@@ -3,9 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01. Multidimensional Arrays", "01. Multidimensional Arrays", "{112DA7AE-6BDC-4F38-BB46-442F008F1FA5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "102.Multidimensional Arrays", "102.Multidimensional Arrays", "{112DA7AE-6BDC-4F38-BB46-442F008F1FA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.FillTheMatrix", "01.FillTheMatrix\01.FillTheMatrix.csproj", "{98E180F9-76D7-4399-B8DC-7614A6BA245C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "000.EntryExam", "000.EntryExam", "{6F6DB610-D8B2-4D79-8AA5-EEDF55B4BFCB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "101.Arrays", "101.Arrays", "{B21F4A88-F093-40DE-8C96-EA1A112839C6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tasks", "Tasks", "{CA4678A0-044A-44C2-B0CC-DFF2602F38FE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exercises", "Exercises", "{5517B7B7-FF1F-4679-8046-D9812499FE82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10201.FillTheMatrix", "10201.FillTheMatrix\10201.FillTheMatrix.csproj", "{98E180F9-76D7-4399-B8DC-7614A6BA245C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,6 +30,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{98E180F9-76D7-4399-B8DC-7614A6BA245C} = {112DA7AE-6BDC-4F38-BB46-442F008F1FA5}
+		{CA4678A0-044A-44C2-B0CC-DFF2602F38FE} = {112DA7AE-6BDC-4F38-BB46-442F008F1FA5}
+		{5517B7B7-FF1F-4679-8046-D9812499FE82} = {112DA7AE-6BDC-4F38-BB46-442F008F1FA5}
+		{98E180F9-76D7-4399-B8DC-7614A6BA245C} = {CA4678A0-044A-44C2-B0CC-DFF2602F38FE}
 	EndGlobalSection
 EndGlobal
