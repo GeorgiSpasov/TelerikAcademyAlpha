@@ -46,18 +46,56 @@ namespace _10201.FillTheMatrix
                     break;
 
                 case "c":
-                    // TODO =========================================================
+                    int i = 0;
+                    while (counter <= n * n)
+                    {
+                        int row = (n - 1) - (i < n ? i : n - 1);
+                        int col = 0 + (i < n ? 0 : i % n + 1);
+                        while (row < n && col < n)
+                        {
+                            matrix[row++, col++] = counter++;
+                        }
+                        i++;
+                    }
+                    break;
 
+                case "d":
+                    int r = 0;
+                    int c = 0;
+                    int j = 0;
 
+                    while (counter <= n * n)
+                    {
+                        //Down
+                        for (r = 0 + j; r < (n - 1) - j; r++)
+                        {
+                            matrix[r, c] = counter++;
+                        }
 
+                        //Right
+                        for (c = 0 + j; c < (n - 1) - j; c++)
+                        {
+                            matrix[r, c] = counter++;
+                        }
 
+                        //Up
+                        for (r = (n - 1) - j; r > 0 + j; r--)
+                        {
+                            matrix[r, c] = counter++;
+                        }
 
-                    break; // =======================================================
-
+                        //Left
+                        for (c = (n - 1) - j; c > 0 + j; c--)
+                        {
+                            matrix[r, c] = counter++;
+                        }
+                        c++;
+                        j++;
+                    }
+                    break;
                 default:
                     break;
             }
-
 
             for (int row = 0; row < n; row++)
             {
