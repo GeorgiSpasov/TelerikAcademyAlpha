@@ -8,7 +8,7 @@ namespace _10403.CorrectBracketsTest
         {
             string input = Console.ReadLine();
             int check = 0;
-            string isCorrect = "Incorrect";
+            string isCorrect;
 
             foreach (char item in input)
             {
@@ -21,14 +21,12 @@ namespace _10403.CorrectBracketsTest
                     check--;
                     if (check < 0)
                     {
+                        isCorrect = "Incorrect";
                         break;
                     }
                 }
             }
-            if (check == 0)
-            {
-                isCorrect = "Correct";
-            }
+            isCorrect = check == 0 ? "Correct" : "Incorrect";
             Console.WriteLine(isCorrect);
         }
     }
