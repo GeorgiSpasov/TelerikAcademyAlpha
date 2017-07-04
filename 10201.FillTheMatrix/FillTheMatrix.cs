@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace _10201.FillTheMatrix
 {
@@ -62,49 +63,57 @@ namespace _10201.FillTheMatrix
                 case "d":
                     int r = 0;
                     int c = 0;
-                    int j = 0;
+                    int padding = 0;
 
                     while (counter <= n * n)
                     {
                         //Down
-                        for (r = 0 + j; r < (n - 1) - j; r++)
+                        for (r = 0 + padding; r < n - padding; r++)
                         {
                             matrix[r, c] = counter++;
                         }
+                        r--;
 
                         //Right
-                        for (c = 0 + j; c < (n - 1) - j; c++)
+                        for (c = 1 + padding; c < (n - 1) - padding; c++)
                         {
                             matrix[r, c] = counter++;
                         }
 
                         //Up
-                        for (r = (n - 1) - j; r > 0 + j; r--)
+                        for (r = (n - 1) - padding; r > 0 + padding; r--)
                         {
                             matrix[r, c] = counter++;
                         }
 
                         //Left
-                        for (c = (n - 1) - j; c > 0 + j; c--)
+                        for (c = (n - 1) - padding; c > 0 + padding; c--)
                         {
                             matrix[r, c] = counter++;
                         }
                         c++;
-                        j++;
+                        padding++;
                     }
                     break;
                 default:
                     break;
             }
 
-            for (int row = 0; row < n; row++)
+            PrintMatrix(matrix);
+        }
+
+        public static void PrintMatrix<T>(T[,] matrix)
+        {
+            StringBuilder sb = new StringBuilder(matrix.Length);
+            for (int row = 0; row < matrix.GetLength(0); row++)
             {
-                for (int col = 0; col < n - 1; col++)
+                for (int col = 0; col < matrix.GetLength(1) - 1; col++)
                 {
-                    Console.Write(matrix[row, col] + " ");
+                    sb.Append(matrix[row, col] + " ");
                 }
-                Console.WriteLine(matrix[row, n - 1]);
+                sb.Append(matrix[row, matrix.GetLength(1) - 1] + "\n");
             }
+            Console.Write(string.Format(sb.ToString()));
         }
     }
 }
