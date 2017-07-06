@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace _10405.ParseTags
 {
@@ -11,29 +8,35 @@ namespace _10405.ParseTags
         static void Main(string[] args)
         {
             string text = Console.ReadLine();
+
             StringBuilder result = new StringBuilder(text);
-            string open = "<upcase>";
-            string close = "</upcase>";
+            string openingTag = "<upcase>";
+            string closingTag = "</upcase>";
             int openIndex = text.Length - 1;
             int closeIndex = text.Length - 1;
-            int stringLength = 0;
-            string modString = "";
+            int selectionLength = 0;
+            string selection = "";
 
-            while (openIndex > -1)
+            while (true)
             {
-                openIndex = text.LastIndexOf(open, openIndex);
-                closeIndex = text.LastIndexOf(close, closeIndex);
-                stringLength = openIndex - closeIndex;
-                modString = 
-
-
-            result.Replace();
+                openIndex = text.LastIndexOf(openingTag, openIndex);
+                if (openIndex == -1)
+                {
+                    break;
+                }
+                closeIndex = text.LastIndexOf(closingTag, closeIndex);
+                selectionLength = closeIndex - openIndex - openingTag.Length;
+                if (selectionLength == 0)
+                {
+                    continue;
+                }
+                selection = text.Substring(openIndex + openingTag.Length, selectionLength);
+                result.Replace(selection, selection.ToUpper(), openIndex + openingTag.Length, selectionLength);
             }
+            result.Replace(openingTag, "");
+            result.Replace(closingTag, "");
 
-            text.
-
-            text.Substring()
-            text.ToUpper()
+            Console.WriteLine(result.ToString());
         }
     }
 }
