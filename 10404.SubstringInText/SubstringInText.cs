@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Text.RegularExpressions;
 
 namespace _10404.SubstringInText
 {
@@ -7,11 +6,19 @@ namespace _10404.SubstringInText
     {
         static void Main(string[] args)
         {
-            int occurrence;
             string pattern = Console.ReadLine();
             string text = Console.ReadLine();
-            occurrence = Regex.Matches(text, pattern).Count;
+            int occurrence = 0;
+            int index = text.Length - 1;
 
+            while (index > -1)
+            {
+                index = text.LastIndexOf(pattern, index,StringComparison.InvariantCultureIgnoreCase);
+                if (index > -1)
+                {
+                    occurrence++;
+                }
+            }
             Console.WriteLine(occurrence);
         }
     }
