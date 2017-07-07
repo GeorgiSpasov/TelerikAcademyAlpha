@@ -6,29 +6,20 @@ namespace _10408.ExtractSentences
 {
     class ExtractSentences
     {
-        // 20 / 100
-
         static void Main(string[] args)
         {
             string word = Console.ReadLine();
             string text = Console.ReadLine();
 
-            //string word = "in";
-            //string text = "We are living in a yellow submarine. We don't have anything else. Inside the submarine is very tight. So we are drinking all the day. We will move out of it in 5 days.";
-
-            int startIndex = text.Length - 2;
-            int endIndex = text.Length - 1;
+            int startIndex = 0;
+            int endIndex = 0;
             string sentence;
             StringBuilder result = new StringBuilder();
 
             List<char> nonChars = new List<char>();
             for (int i = 0; i < 127; i++)
             {
-                if (Char.IsLetter((char)i))
-                {
-                    continue;
-                }
-                else
+                if (!Char.IsLetter((char)i))
                 {
                     nonChars.Add((char)i);
                 }
@@ -38,32 +29,28 @@ namespace _10408.ExtractSentences
 
             while (true)
             {
-                startIndex = text.LastIndexOf('.', startIndex);
-                if (startIndex < 0)
+                if (endIndex == text.Length)
                 {
-                    sentence = text.Substring(startIndex + 1, endIndex - startIndex);
-                    if (CheckPresence(word, sentence, splitters))
-                    {
-                        result.Insert(0, sentence);
-                    }
                     break;
                 }
+                endIndex = text.IndexOf('.', startIndex + 1);
 
-                sentence = text.Substring(startIndex + 1, endIndex - startIndex);
+                sentence = text.Substring(startIndex, endIndex - startIndex + 1);
                 //Console.WriteLine(sentence);
+
                 if (CheckPresence(word, sentence, splitters))
                 {
-                    result.Insert(0, sentence);
+                    result.Append(sentence);
                 }
-                endIndex = startIndex;
-                startIndex--;
+                startIndex = endIndex + 1;
+                endIndex++;
             }
             Console.WriteLine(result);
         }
 
         public static bool CheckPresence(string word, string sentence, char[] splitters)
         {
-            bool result = false;           
+            bool result = false;
             string[] words = sentence.Split(splitters);
             foreach (string item in words)
             {
