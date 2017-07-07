@@ -35,7 +35,7 @@ namespace _10408.ExtractSentences
                 }
                 endIndex = text.IndexOf('.', startIndex + 1);
 
-                sentence = text.Substring(startIndex, endIndex - startIndex + 1);
+                sentence = text.Substring(startIndex, endIndex - startIndex + 1); //???? space
                 //Console.WriteLine(sentence);
 
                 if (CheckPresence(word, sentence, splitters))
@@ -57,6 +57,7 @@ namespace _10408.ExtractSentences
                 if (item == word)
                 {
                     result = true;
+                    break;
                 }
             }
             return result;
