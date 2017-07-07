@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace _10408.ExtractSentences
@@ -11,56 +11,24 @@ namespace _10408.ExtractSentences
             string word = Console.ReadLine();
             string text = Console.ReadLine();
 
-            int startIndex = 0;
-            int endIndex = 0;
-            string sentence;
+            string[] sentences = text.Split('.');
+
+            char[] splitChars = text.ToList()
+                .Where(ch => !Char.IsLetter(ch))
+                .Distinct()
+                .ToArray();
+
             StringBuilder result = new StringBuilder();
 
-            List<char> nonChars = new List<char>();
-            for (int i = 0; i < 127; i++)
+            foreach (string sentence in sentences)
             {
-                if (!Char.IsLetter((char)i))
+                string[] words = sentence.Split(splitChars);
+                if (words.Contains(word))
                 {
-                    nonChars.Add((char)i);
+                    result.Append(sentence.Trim() + ". ");
                 }
             }
-            char[] splitters = nonChars.ToArray();
-            //Console.WriteLine(string.Join(" ",splitters));
-
-            while (true)
-            {
-                if (endIndex == text.Length)
-                {
-                    break;
-                }
-                endIndex = text.IndexOf('.', startIndex + 1);
-
-                sentence = text.Substring(startIndex, endIndex - startIndex + 1); //???? space
-                //Console.WriteLine(sentence);
-
-                if (CheckPresence(word, sentence, splitters))
-                {
-                    result.Append(sentence);
-                }
-                startIndex = endIndex + 1;
-                endIndex++;
-            }
-            Console.WriteLine(result);
-        }
-
-        public static bool CheckPresence(string word, string sentence, char[] splitters)
-        {
-            bool result = false;
-            string[] words = sentence.Split(splitters);
-            foreach (string item in words)
-            {
-                if (item == word)
-                {
-                    result = true;
-                    break;
-                }
-            }
-            return result;
+            Console.WriteLine(result.ToString().TrimEnd());
         }
     }
 }
