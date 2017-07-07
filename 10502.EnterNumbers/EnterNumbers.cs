@@ -6,27 +6,28 @@ namespace _10502.EnterNumbers
     {
         static void Main(string[] args)
         {
-            int[] result = new int[12];
-            result[0] = 1;
-            result[11] = 100;
+            int[] numbers = new int[12];
+            numbers[0] = 1;
+            numbers[11] = 100;
+
             try
             {
-                for (int i = 1; i < result.Length; i++)
+                for (int i = 1; i < numbers.Length - 1; i++)
                 {
                     int number = int.Parse(Console.ReadLine());
 
-                    if (result[i - 1] < number && number < 100)
+                    if (numbers[i - 1] < number && number < 100)
                     {
-                        result[i] = number;
+                        numbers[i] = number;
                     }
                     else
                     {
-                        throw new Exception();
+                        throw new ArgumentOutOfRangeException();
                     }
                 }
-                Console.WriteLine(string.Join(" < ", result));
+                Console.WriteLine(string.Join(" < ", numbers));
             }
-            catch (Exception)
+            catch (SystemException)
             {
                 Console.WriteLine("Exception");
             }
