@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace _10707.SelectionSort
+namespace _10107.SelectionSort
 {
     class SelectionSort
     {
