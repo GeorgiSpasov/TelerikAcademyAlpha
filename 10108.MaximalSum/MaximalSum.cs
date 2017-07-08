@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace _10708.MaximalSum
+namespace _10108.MaximalSum
 {
     class MaximalSum
     {
