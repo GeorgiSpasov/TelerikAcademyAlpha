@@ -128,7 +128,7 @@ namespace _10701.Defining_Classes_Part_1
 
         public override string ToString()
         {
-            return string.Format($"GSM\nManufacturer: {this.Manufacturer}. Model: {this.Model} \nPrice: {this.Price}. Owner: {this.Owner}\n{this.Battery}\n{this.Display}, {string.Join(" ", this.CallHistory)}");
+            return string.Format($"GSM\nManufacturer: {this.Manufacturer}. Model: {this.Model} \nPrice: {this.Price}. Owner: {this.Owner}\n{this.Battery}\n{this.Display}");
         }
 
     }
