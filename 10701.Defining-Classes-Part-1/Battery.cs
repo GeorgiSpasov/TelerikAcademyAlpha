@@ -27,7 +27,7 @@ namespace _10701.Defining_Classes_Part_1
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Invalid model entered");
+                    throw new ArgumentException("Invalid battery model entered!");
                 }
                 this.model = value;
             }
@@ -54,7 +54,7 @@ namespace _10701.Defining_Classes_Part_1
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("Invalid hours idle value entered");
+                    throw new ArgumentException("Invalid hours idle value entered!");
                 }
                 this.hoursIdle = value;
             }
@@ -69,7 +69,7 @@ namespace _10701.Defining_Classes_Part_1
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("Invalid hours talk value entered");
+                    throw new ArgumentException("Invalid hours talk value entered!");
                 }
                 this.hoursTalk = value;
             }
@@ -77,7 +77,7 @@ namespace _10701.Defining_Classes_Part_1
 
         public override string ToString()
         {
-            return string.Format($"Battery\nModel: {this.Model}. Type: {this.Type}\nHours idle: {this.HoursIdle}. Hours talk: {this.HoursTalk}");
+            return string.Format($"Battery: {this.Model}, {this.Type}\nHours Idle: {this.HoursIdle}. Hours Talk: {this.HoursTalk}");
         }
     }
 }

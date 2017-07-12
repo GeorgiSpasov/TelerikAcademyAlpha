@@ -9,7 +9,15 @@ namespace _10701.Defining_Classes_Part_1
         private TimeSpan time;
         private string dialedNumber;
         private int callDuration;
-        //private static Regex phoneRegex = new Regex(@"[0-9-]+");
+        private static Regex phoneRegex = new Regex(@"[0-9-]+");
+
+        public Call(DateTime date, TimeSpan time, string dialedNumber, int callDuration)
+        {
+            this.Date = date;
+            this.Time = time;
+            this.DialedNumber = dialedNumber;
+            this.CallDuration = callDuration;
+        }
 
         public DateTime Date
         {
@@ -41,10 +49,10 @@ namespace _10701.Defining_Classes_Part_1
             }
             set
             {
-                //if (!phoneRegex.IsMatch(value))
-                //{
-                //    throw new ArgumentException("Invalid phone number entered");
-                //}
+                if (!phoneRegex.IsMatch(value))
+                {
+                    throw new ArgumentException("Invalid phone number entered!");
+                }
                 this.dialedNumber = value;
             }
         }
@@ -58,23 +66,15 @@ namespace _10701.Defining_Classes_Part_1
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("Invalid duration entered");
+                    throw new ArgumentException("Invalid duration entered!");
                 }
                 this.callDuration = value;
             }
         }
 
-        public Call(DateTime date, TimeSpan time, string dialedNumber, int callDuration)
-        {
-            this.Date = date;
-            this.Time = time;
-            this.DialedNumber = dialedNumber;
-            this.CallDuration = callDuration;
-        }
-
         public override string ToString()
         {
-            return string.Format($"Call history/nDate: {this.Date}. Time: {this.Time}/nDialed number: {this.DialedNumber}/nCall duration: {this.CallDuration}");
+            return string.Format($"Date: {this.Date.ToShortDateString()}. Time: {this.Time}. Dialed number: {this.DialedNumber,12}. Call duration: {this.CallDuration,3} s\n");
         }
     }
 }

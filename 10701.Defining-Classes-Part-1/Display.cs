@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace _10701.Defining_Classes_Part_1
 {
@@ -6,6 +7,12 @@ namespace _10701.Defining_Classes_Part_1
     {
         private double size;
         private int colors;
+
+        public Display(double size, int colors)
+        {
+            this.Size = size;
+            this.Colors = colors;
+        }
 
         public double Size
         {
@@ -17,7 +24,7 @@ namespace _10701.Defining_Classes_Part_1
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("Invalid size entered");
+                    throw new ArgumentException("Invalid size entered!");
                 }
                 this.size = value;
             }
@@ -32,21 +39,15 @@ namespace _10701.Defining_Classes_Part_1
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("Invalid color's number entered");
+                    throw new ArgumentException("Invalid color's number entered!");
                 }
                 this.colors = value;
             }
         }
 
-        public Display(double size, int colors)
-        {
-            this.Size = size;
-            this.Colors = colors;
-        }
-
         public override string ToString()
         {
-            return string.Format($"Display\nSize: {this.Size}. Colors: {this.Colors}");
+            return string.Format($"Display: {this.Size}\". {this.Colors.ToString("#,#", CultureInfo.InvariantCulture)} colors");
         }
     }
 }
