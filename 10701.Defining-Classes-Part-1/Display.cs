@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Text;
 
 namespace _10701.Defining_Classes_Part_1
 {
@@ -8,12 +9,15 @@ namespace _10701.Defining_Classes_Part_1
         private double size;
         private int colors;
 
-        public Display(double size, int colors)
+        public Display(double size)
         {
             this.Size = size;
+
+        }
+        public Display(double size, int colors) : this(size)
+        {
             this.Colors = colors;
         }
-
         public double Size
         {
             get
@@ -47,7 +51,12 @@ namespace _10701.Defining_Classes_Part_1
 
         public override string ToString()
         {
-            return string.Format($"Display: {this.Size}\". {this.Colors.ToString("#,#", CultureInfo.InvariantCulture)} colors");
+            StringBuilder result = new StringBuilder($"Display: {this.Size}\"");
+            if (this.Colors != 0)
+            {
+                result.Append($". {this.Colors.ToString("#,#", CultureInfo.InvariantCulture)} colors");
+            }
+            return result.ToString();
         }
     }
 }

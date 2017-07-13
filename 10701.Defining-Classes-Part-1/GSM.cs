@@ -19,14 +19,24 @@ namespace _10701.Defining_Classes_Part_1
         private Display display;
         private List<Call> callHistory;
 
-        public GSM(string manufacturer, string model, int price = 0, string owner = null, Battery battery = null, Display display = null, List<Call> callHistory = null)
+
+        public GSM(string manufacturer, string model)
         {
             this.Manufacturer = manufacturer;
             this.Model = model;
+        }
+        public GSM(string manufacturer, string model, int price, Battery battery, Display display) : this(manufacturer, model)
+        {
             this.Price = price;
-            this.Owner = owner;
             this.Battery = battery;
             this.Display = display;
+        }
+        public GSM(string manufacturer, string model, int price, string owner, Battery battery, Display display) : this(manufacturer, model, price, battery, display)
+        {
+            this.Owner = owner;
+        }
+        public GSM(string manufacturer, string model, int price, string owner, Battery battery, Display display, List<Call> callHistory) : this(manufacturer, model, price, owner, battery, display)
+        {
             this.CallHistory = callHistory;
         }
 
@@ -124,28 +134,13 @@ namespace _10701.Defining_Classes_Part_1
             }
         }
 
-        public override string ToString()
-        {
-            StringBuilder result = new StringBuilder(string.Format($"{this.Manufacturer} {this.Model} \nPrice: {this.Price.ToString("C", new CultureInfo("en-US"))}. Owner: {this.Owner}\n{this.Battery}\n{this.Display}\n"));
-
-            if (this.CallHistory != null && this.CallHistory.Count != 0)
-            {
-                result.Append("Call History:\n");
-                foreach (Call call in this.CallHistory)
-                {
-                    result.Append(call);
-                }
-            }
-            return result.ToString();
-        }
-
         public void AddCall(Call call)
         {
             this.CallHistory.Add(call);
         }
-        public void RemoveCall(int index)
+        public void RemoveCall(Call call)
         {
-            this.CallHistory.RemoveAt(index);
+            this.CallHistory.Remove(call);
         }
         public void ClearCalls()
         {
@@ -159,6 +154,20 @@ namespace _10701.Defining_Classes_Part_1
                 totalCallDuration += call.CallDuration;
             }
             return totalCallDuration / 60 * CallPrice;
+        }
+        public override string ToString()
+        {
+            StringBuilder result = new StringBuilder(string.Format($"{this.Manufacturer} {this.Model} \nPrice: {this.Price.ToString("C", new CultureInfo("en-US"))}. Owner: {this.Owner}\n{this.Battery}\n{this.Display}\n"));
+
+            if (this.CallHistory != null && this.CallHistory.Count != 0)
+            {
+                result.Append("Call History:\n");
+                foreach (Call call in this.CallHistory)
+                {
+                    result.Append(call);
+                }
+            }
+            return result.ToString();
         }
     }
 }

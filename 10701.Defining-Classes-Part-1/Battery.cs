@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace _10701.Defining_Classes_Part_1
 {
@@ -9,14 +10,19 @@ namespace _10701.Defining_Classes_Part_1
         private int hoursIdle;
         private int hoursTalk;
 
-        public Battery(string model, BatteryType type, int hoursIdle, int hoursTalk)
+        public Battery(string model)
         {
             this.Model = model;
+        }
+        public Battery(string model, BatteryType type) : this(model)
+        {
             this.Type = type;
+        }
+        public Battery(string model, BatteryType type, int hoursIdle, int hoursTalk) : this(model, type)
+        {
             this.HoursIdle = hoursIdle;
             this.HoursTalk = hoursTalk;
         }
-
         public string Model
         {
             get
@@ -77,7 +83,12 @@ namespace _10701.Defining_Classes_Part_1
 
         public override string ToString()
         {
-            return string.Format($"Battery: {this.Model}, {this.Type}\nHours Idle: {this.HoursIdle}. Hours Talk: {this.HoursTalk}");
+            StringBuilder result = new StringBuilder($"Battery: {this.Model}, {this.Type}");
+            if (this.HoursIdle != 0 && this.HoursTalk != 0)
+            {
+                result.Append($"\nHours Idle: { this.HoursIdle}. Hours Talk: { this.HoursTalk}");
+            }
+            return result.ToString();
         }
     }
 }
