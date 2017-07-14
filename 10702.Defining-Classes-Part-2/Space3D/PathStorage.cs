@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _10702.Defining_Classes_Part_2
+namespace _10702.Defining_Classes_Part_2.Space3D
 {
     public static class PathStorage
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace _10702.Defining_Classes_Part_2
+namespace _10702.Defining_Classes_Part_2.Space3D
 {
     public static class Distance3D
     {

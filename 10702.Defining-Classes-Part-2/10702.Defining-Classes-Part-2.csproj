@@ -42,15 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Distance3D.cs" />
-    <Compile Include="GenericList.cs" />
-    <Compile Include="PathStorage.cs" />
-    <Compile Include="Point3D.cs" />
-    <Compile Include="Path.cs" />
+    <Compile Include="Space3D\Distance3D.cs" />
+    <Compile Include="Generic\GenericList.cs" />
+    <Compile Include="Space3D\PathStorage.cs" />
+    <Compile Include="Space3D\Point3D.cs" />
+    <Compile Include="Space3D\Path.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
