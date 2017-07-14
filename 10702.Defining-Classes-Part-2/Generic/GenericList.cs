@@ -1,19 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _10702.Defining_Classes_Part_2.Generic
 {
     public class GenericList<T>
     {
         private T[] elements;
-        private int fillIndex = 0;
+        private int fillIndex;
+        private int length;
 
         public GenericList(int capacity)
         {
             this.Elements = new T[capacity];
+            this.FillIndex = 0;
         }
 
         public T[] Elements
@@ -28,14 +27,34 @@ namespace _10702.Defining_Classes_Part_2.Generic
             }
         }
 
+        public int FillIndex
+        {
+            get
+            {
+                return this.fillIndex;
+            }
+            set
+            {
+                this.fillIndex = value;
+            }
+        }
+
+        public int Length
+        {
+            get
+            {
+                return this.Elements.Length;
+            }
+        }
+
         public void AddElement(T element)
         {
-            if (fillIndex + 1 >= this.Elements.Length)
+            if (this.FillIndex >= this.Elements.Length)
             {
-                // TODO: method GrowArray
+                this.AutoGrow();
             }
-            this.Elements[fillIndex] = element;
-            fillIndex++;
+            this.Elements[this.FillIndex] = element;
+            this.FillIndex++;
         }
 
         public T GetElement(int index)
@@ -46,22 +65,73 @@ namespace _10702.Defining_Classes_Part_2.Generic
         public void RemoveElement(int index)
         {
             this.Elements[index] = default(T);
-            //TODO shift elements <<
+            if (index < this.Elements.Length - 1)
+            {
+                T currentElement;
+                while (index < this.Elements.Length - 1)
+                {
+                    currentElement = this.Elements[index + 1];
+                    this.Elements[index] = currentElement;
+                    index++;
+                }
+                this.Elements[this.FillIndex] = default(T);
+            }
         }
 
-        public void InsertElementAt(int index, T item)
+        public void InsertElementAt(int index, T element)
         {
-            //this.Elements.Insert(index, item);
+            if (fillIndex >= this.Elements.Length)
+            {
+                this.AutoGrow();
+            }
+
+            T shiftedElement;
+            int shiftIndex = this.FillIndex;
+            while (shiftIndex >= index)
+            {
+                shiftedElement = this.Elements[shiftIndex];
+                shiftIndex++;
+                this.Elements[shiftIndex] = shiftedElement;
+                shiftIndex -= 2;
+            }
+            this.Elements[index] = element;
         }
 
-        public void ClearElements()
+        public void ClearList()
         {
-            //this.Elements.Clear();
+            for (int i = 0; i < this.Elements.Length; i++)
+            {
+                this.Elements[i] = default(T);
+            }
         }
 
-        //public T FindElement(T item)
+        public T FindElement(T item) //Finding element by its value 
         {
-            //return this.Elements.Find(item);
+            foreach (T element in this.Elements)
+            {
+                if (element.Equals(item))
+                {
+                    return element;
+                }
+            }
+            return default(T);
+        }
+
+        private void AutoGrow()
+        {
+            T[] newArray = new T[this.Elements.Length * 2];
+            Array.Copy(this.Elements, newArray, this.FillIndex);
+            this.Elements = newArray;
+        }
+
+        /*TODO:
+        Create generic methods Min<T>() and Max<T>() for finding the minimal and maximal element in the GenericList<T>.
+        May need to add a generic constraints for the type T.*/
+
+        public override string ToString()
+        {
+            return string.Join("\n", this.Elements.Where(e => !e.Equals(default(T))));
         }
     }
 }
+

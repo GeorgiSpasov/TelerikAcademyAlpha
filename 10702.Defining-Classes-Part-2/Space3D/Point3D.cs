@@ -13,16 +13,10 @@
         public int X { get; set; }
         public int Y { get; set; }
         public int Z { get; set; }
-        public static Point3D O
-        {
-            get
-            {
-                return o;
-            }
-        }
+
         public override string ToString()
         {
-            return string.Format($"X = {this.X}. Y = {this.Y}. Z = {this.Z}");
+            return string.Format($"[x:{this.X} y:{this.Y} z:{this.Z}]");
         }
     }
 }
