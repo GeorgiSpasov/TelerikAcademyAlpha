@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Generic\GenericList.cs" />
+    <Compile Include="Matrix\Matrix.cs" />
     <Compile Include="Space3D\Distance3D.cs" />
     <Compile Include="Space3D\PathStorage.cs" />
     <Compile Include="Space3D\Point3D.cs" />
