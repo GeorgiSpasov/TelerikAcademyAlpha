@@ -2,7 +2,7 @@
 {
     public struct Point3D
     {
-        public static Point3D o = new Point3D(0, 0, 0);
+        private static Point3D o = new Point3D(0, 0, 0);
 
         public Point3D(int x, int y, int z)
         {
@@ -13,6 +13,7 @@
         public int X { get; set; }
         public int Y { get; set; }
         public int Z { get; set; }
+        public static Point3D O { get { return o; } }
 
         public override string ToString()
         {
