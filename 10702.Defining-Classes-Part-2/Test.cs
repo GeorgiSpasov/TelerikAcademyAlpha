@@ -10,6 +10,7 @@ namespace _10702.Defining_Classes_Part_2
     {
         static void Main(string[] args)
         {
+            #region GenericList
             //GenericList<Point3D> pointsArray = new GenericList<Point3D>(2);
             //pointsArray.AddElement(Point3D.O); // Not printed (default value)
             //pointsArray.AddElement(new Point3D(1, 1, 1));
@@ -30,41 +31,41 @@ namespace _10702.Defining_Classes_Part_2
             //Console.WriteLine(pointsArray.FindElement(new Point3D(7, 7, 7)));
 
             //pointsArray.ClearList();
-            //Console.WriteLine(pointsArray + "\n");
+            //Console.WriteLine(pointsArray + "\n"); 
+            #endregion
 
-            //Matrix<int> intMatrix = new Matrix<int>(5, 6);
-            //for (int row = 0; row < intMatrix.Rows; row++)
-            //{
-            //    for (int col = 0; col < intMatrix.Cols; col++)
-            //    {
-            //        intMatrix[row, col] = row + col;
-            //    }
-            //}
-            //PrintMatrix(intMatrix);
+            Matrix<int> intMatrix = new Matrix<int>(5, 6);
+            for (int row = 0; row < intMatrix.Rows; row++)
+            {
+                for (int col = 0; col < intMatrix.Cols; col++)
+                {
+                    intMatrix[row, col] = row + col;
+                }
+            }
+            PrintMatrix(intMatrix);
 
-            //int[,] a1 =
-            // {
-            //    {1, 2, 3, 4, 5},
-            //    {1, 2, 3, 4, 5},
-            //    {1, 2, 3, 4, 5}
-            //};
-            //int[,] a2 =
-            // {
-            //    {10, 10, 10, 10, 10},
-            //    {10, 10, 10, 10, 10},
-            //    {10, 10, 10, 10, 10}
-            //};
-            //Matrix<int> m1 = new Matrix<int>(a1);
-            //PrintMatrix(m1);
-            //Console.WriteLine();
-            //Matrix<int> m2 = new Matrix<int>(a2);
-            //PrintMatrix(m2);
-            //Console.WriteLine();
-            //PrintMatrix(m1 + m2);
-            //Console.WriteLine();
-            //PrintMatrix(m1 - m2);
-            //Console.WriteLine();
-
+            int[,] a1 =
+             {
+                {1, 2, 3, 4, 5},
+                {1, 2, 3, 4, 5},
+                {1, 2, 3, 4, 5}
+            };
+            int[,] a2 =
+             {
+                {10, 10, 10, 10, 10},
+                {10, 10, 10, 10, 10},
+                {10, 10, 10, 10, 10}
+            };
+            Matrix<int> m1 = new Matrix<int>(a1);
+            PrintMatrix(m1);
+            Console.WriteLine();
+            Matrix<int> m2 = new Matrix<int>(a2);
+            PrintMatrix(m2);
+            Console.WriteLine();
+            PrintMatrix(m1 + m2);
+            Console.WriteLine();
+            PrintMatrix(m1 - m2);
+            Console.WriteLine();
 
             int[,] b1 =
              {
@@ -86,6 +87,10 @@ namespace _10702.Defining_Classes_Part_2
             PrintMatrix(n1 * n2);
             Console.WriteLine();
 
+            if (n1)
+            {
+                Console.WriteLine("The matrix has no zero elements.");
+            }
         }
 
         public static void PrintMatrix<T>(Matrix<T> matrix)

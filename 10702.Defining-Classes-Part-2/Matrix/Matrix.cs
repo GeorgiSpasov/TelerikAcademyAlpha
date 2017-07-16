@@ -119,5 +119,38 @@ namespace _10702.Defining_Classes_Part_2.Matrix
             return result;
         }
 
+        public static bool operator true(Matrix<T> matrix)
+        {
+            bool result = true;
+            for (int row = 0; row < matrix.Rows; row++)
+            {
+                for (int col = 0; col < matrix.Cols; col++)
+                {
+                    if ((dynamic)matrix[row, col] == default(T))
+                    {
+                        result = false;
+                        break;
+                    }
+                }
+            }
+            return result;
+        }
+
+        public static bool operator false(Matrix<T> matrix)
+        {
+            bool result = true;
+            for (int row = 0; row < matrix.Rows; row++)
+            {
+                for (int col = 0; col < matrix.Cols; col++)
+                {
+                    if ((dynamic)matrix[row, col] == default(T))
+                    {
+                        result = false;
+                        break;
+                    }
+                }
+            }
+            return result;
+        }
     }
 }
