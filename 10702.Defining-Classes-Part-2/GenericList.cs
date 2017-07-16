@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace _10702.Defining_Classes_Part_2.Generic
+namespace _10702.Defining_Classes_Part_2
 {
     public class GenericList<T>
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace _10702.Defining_Classes_Part_2.Matrix
+namespace _10702.Defining_Classes_Part_2
 {
     public class Matrix<T>
     {
