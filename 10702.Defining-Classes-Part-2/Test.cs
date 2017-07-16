@@ -32,40 +32,59 @@ namespace _10702.Defining_Classes_Part_2
             //pointsArray.ClearList();
             //Console.WriteLine(pointsArray + "\n");
 
-            Matrix<int> intMatrix = new Matrix<int>(5, 6);
-            for (int row = 0; row < intMatrix.Rows; row++)
-            {
-                for (int col = 0; col < intMatrix.Cols; col++)
-                {
-                    intMatrix[row, col] = row + col;
-                }
-            }
+            //Matrix<int> intMatrix = new Matrix<int>(5, 6);
+            //for (int row = 0; row < intMatrix.Rows; row++)
+            //{
+            //    for (int col = 0; col < intMatrix.Cols; col++)
+            //    {
+            //        intMatrix[row, col] = row + col;
+            //    }
+            //}
             //PrintMatrix(intMatrix);
 
-            int[,] a1 =
-             {
-                {1, 2, 3, 4, 5 },
-                {1, 2, 3, 4, 5 },
-                {1, 2, 3, 4, 5 }
-            };
-            int[,] a2 =
-             {
-                {10, 10, 10, 10, 10 },
-                {10, 10, 10, 10, 10 },
-                {10, 10, 10, 10, 10 }
-            };
-            Matrix<int> m1 = new Matrix<int>(a1);
-            PrintMatrix(m1);
-            Console.WriteLine();
-            Matrix<int> m2 = new Matrix<int>(a2);
-            PrintMatrix(m2);
-            Console.WriteLine();
-            PrintMatrix(m1 + m2);
-            Console.WriteLine();
-            PrintMatrix(m1 - m2);
-            Console.WriteLine();
+            //int[,] a1 =
+            // {
+            //    {1, 2, 3, 4, 5},
+            //    {1, 2, 3, 4, 5},
+            //    {1, 2, 3, 4, 5}
+            //};
+            //int[,] a2 =
+            // {
+            //    {10, 10, 10, 10, 10},
+            //    {10, 10, 10, 10, 10},
+            //    {10, 10, 10, 10, 10}
+            //};
+            //Matrix<int> m1 = new Matrix<int>(a1);
+            //PrintMatrix(m1);
+            //Console.WriteLine();
+            //Matrix<int> m2 = new Matrix<int>(a2);
+            //PrintMatrix(m2);
+            //Console.WriteLine();
+            //PrintMatrix(m1 + m2);
+            //Console.WriteLine();
+            //PrintMatrix(m1 - m2);
+            //Console.WriteLine();
 
 
+            int[,] b1 =
+             {
+                {10, 10, 10},
+                {10, 10, 10}
+            };
+            int[,] b2 =
+             {
+                {1, 2, 3, 4, 5},
+                {1, 2, 3, 4, 5},
+                {1, 2, 3, 4, 5}
+            };
+            Matrix<int> n1 = new Matrix<int>(b1);
+            PrintMatrix(n1);
+            Console.WriteLine();
+            Matrix<int> n2 = new Matrix<int>(b2);
+            PrintMatrix(n2);
+            Console.WriteLine();
+            PrintMatrix(n1 * n2);
+            Console.WriteLine();
 
         }
 
