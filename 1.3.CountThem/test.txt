@@ -1,0 +1,20 @@
+// Single line comment
+@first // Comment end of line
+Clean line without @comments;
+@beforMulti /* start of multi-line comment
+second line comment
+end of multi-line comment */  @varAfterMulti;
+// Last single line comment
+{!}
+
+/* This is @test in comment */
+@myVar = "Some string \@var4 with var escaped.";
+print(@test); print("@foo, @bar");
+// Another comment with variable @invalid
+{!}
+
+
+
+
+
+
