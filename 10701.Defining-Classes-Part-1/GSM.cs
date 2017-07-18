@@ -13,7 +13,7 @@ namespace _10701.Defining_Classes_Part_1
 
         private string manufacturer;
         private string model;
-        private int price;
+        private decimal price;
         private string owner;
         private Battery battery;
         private Display display;
@@ -70,7 +70,7 @@ namespace _10701.Defining_Classes_Part_1
                 this.model = value;
             }
         }
-        public int Price
+        public decimal Price
         {
             get
             {
