@@ -1,11 +1,46 @@
 // Single line comment
 @first // Comment end of line
 Clean line without @comments;
-@beforMulti /* start of multi-line comment
+@beforeMulti /* start of multi-line comment multi-line comment multi-line comment
 second line comment
-end of multi-line comment */  @varAfterMulti;
+end of multi-line comment */  @varAfterMulti; /* start */ of /*multi-line
+second line comment
+end of multi-line comment */
+/**/
+@last
 // Last single line comment
 {!}
+
+
+
+// Single line comment
+@first // Comment end of line
+Clean line without @comments;
+@beforeMulti /* start of multi-line comment multi-line comment multi-line comment
+second line comment
+end of multi-line comment */  @varAfterMulti; start of /*multi-line
+second line comment
+end of multi-line comment */
+/**/
+@last
+// Last single line comment
+{!}
+
+
+
+
+// Single line comment
+@first // Comment end of line
+Clean line without @comments;
+@beforeMulti /* start of multi-line comment multi-line comment multi-line comment
+second line comment
+end of multi-line comment */  @varAfterMulti; 
+/**/
+@last
+// Last single line comment
+{!}
+
+
 
 /* This is @test in comment */
 @myVar = "Some string \@var4 with var escaped.";
