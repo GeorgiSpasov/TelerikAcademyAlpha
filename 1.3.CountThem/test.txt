@@ -1,3 +1,7 @@
+"inside strings" and 'other "@string"'
+{!}
+
+
 // Single line comment
 @first // Comment end of line
 Clean line without @comments;
