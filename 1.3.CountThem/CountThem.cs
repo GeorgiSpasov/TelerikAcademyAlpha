@@ -60,13 +60,11 @@ namespace _1._3.CountThem
                                 break;
                         }
 
-                        if (inputLine[i] == '@')
+                        if (isComment == false && inputLine[i] == '@')
                         {
 
                         }
-
                     }
-
 
                     GetVariables(inputLine, variables, ref isComment);
                 }
