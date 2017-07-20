@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace _10._3.CountThem
 {
     public static class CommentsCleaner
     {
+        // v.1
         public static void RemoveComments(string inputLine, StringBuilder cleanText, bool isMultiLine = false)
         {
             int commentStart = inputLine.IndexOf("/*");
@@ -78,6 +78,7 @@ namespace _10._3.CountThem
             }
         }
 
+        // v.1
         public static void GetVariables(StringBuilder cleanText, List<string> variables)
         {
             string text = cleanText.ToString();
@@ -95,5 +96,173 @@ namespace _10._3.CountThem
                 !w.Contains("-") &&
                 !w.Contains("\\")).ToArray());
         }
+
+        // v.2 without RegEx
+        #region v.2
+        //public static void GetVariables(string inputLine, List<string> variables, ref bool isComment)
+        //{
+        //    string[] splitters = {" ", "%", "&", "(", ")",
+        //        "+", ".", ",", " / ", ":", ";", "<", "=", ">",
+        //        "?", "[", "]", "^", "{", "|", "}", "~"};
+
+        //    string[] words = inputLine.Split(splitters, StringSplitOptions.RemoveEmptyEntries);
+
+        //    bool inDoubleQuotes = false;
+        //    bool inSingleQuotes = false;
+
+
+        //    foreach (string word in words)
+        //    {
+        //        switch (word)
+        //        {
+        //            case "/*":
+        //                isComment = true;
+        //                break;
+        //            case "*/":
+        //                isComment = false;
+        //                break;
+        //            case "//":
+        //                return;
+        //            default:
+        //                break;
+        //        }
+
+        //        if (isComment)
+        //        {
+        //            continue;
+        //        }
+        //        else
+        //        {       // Check vars in strings
+        //            if ((word.StartsWith("@") ||
+        //                (word.StartsWith("\\@") && !inSingleQuotes && !inDoubleQuotes) ||
+        //                (word.StartsWith("\'@") && !inDoubleQuotes) ||
+        //                (word.StartsWith("\"@") && !inSingleQuotes)) &&
+        //                // Validate
+        //                (!char.IsNumber(word[1]) &&
+        //                !word.Contains("-") &&
+        //                !word.Contains("/")) &&
+        //                !(word.IndexOf("\\", 1) > -1)) // @test\ - invalid var
+        //            {
+        //                variables.Add(word
+        //                    .TrimStart('\\')
+        //                    .TrimStart('\'')
+        //                    .TrimStart('\"')
+        //                    .TrimStart('@')
+        //                    .TrimEnd('\'')
+        //                    .TrimEnd('\"'));
+        //            }
+
+        //            #region Quotes Check
+        //            if (word.StartsWith("\"") && word.EndsWith("\""))
+        //            {
+        //                //No change in inQuotes
+        //            }
+        //            else if (word.StartsWith("\'") && word.EndsWith("\'"))
+        //            {
+        //                //No change in inQuotes
+        //            }
+        //            else if (word.StartsWith("\""))
+        //            {
+        //                inDoubleQuotes = true;
+        //            }
+        //            else if (word.EndsWith("\""))
+        //            {
+        //                inDoubleQuotes = false;
+        //            }
+        //            else if (word.StartsWith("\'"))
+        //            {
+        //                inSingleQuotes = true;
+        //            }
+        //            else if (word.EndsWith("\'"))
+        //            {
+        //                inSingleQuotes = false;
+        //            }
+        //            #endregion
+        //        }
+        //    }
+        //} 
+        #endregion
+
+        // v.2.1
+        #region v.2.1
+        public static void GetVariables(string inputLine, List<string> variables, ref bool isComment)
+        {
+            string[] splitters = {" ", "%", "&", "(", ")",
+                "+", ".", ",", " / ", ":", ";", "<", "=", ">",
+                "?", "[", "]", "^", "{", "|", "}", "~", "-", " * "}; // "-" " * "added - fixed runtime error #8
+
+            string[] words = inputLine.Split(splitters, StringSplitOptions.RemoveEmptyEntries);
+
+            bool inDoubleQuotes = false;
+            bool inSingleQuotes = false;
+
+
+            foreach (string word in words)
+            {
+                switch (word)
+                {
+                    case "/*":
+                        isComment = true;
+                        break;
+                    case "*/":
+                        isComment = false;
+                        break;
+                    case "//":
+                        return;
+                    default:
+                        break;
+                }
+
+                if (isComment)
+                {
+                    continue;
+                }
+                else
+                {       // Check vars in strings
+                    if (word.StartsWith("@") ||
+                        (word.StartsWith("\\@") && !inDoubleQuotes && !inSingleQuotes) ||
+                        (word.StartsWith("\'@") && !inDoubleQuotes) ||
+                        (word.StartsWith("\"@") && !inSingleQuotes))
+                    {
+                        variables.Add(word
+                            .TrimStart('\\')
+                            .TrimStart('\'')
+                            .TrimStart('\"')
+                            .TrimStart('@')
+                            .TrimEnd('\'')
+                            .TrimEnd('\"')
+                            .TrimEnd('\''));
+                    }
+
+                    #region Quotes Check
+                    if (word.StartsWith("\"") && word.EndsWith("\""))
+                    {
+                        //No change in inQuotes
+                    }
+                    else if (word.StartsWith("\'") && word.EndsWith("\'"))
+                    {
+                        //No change in inQuotes
+                    }
+                    else if (word.StartsWith("\""))
+                    {
+                        inDoubleQuotes = true;
+                    }
+                    else if (word.EndsWith("\""))
+                    {
+                        inDoubleQuotes = false;
+                    }
+                    else if (word.StartsWith("\'"))
+                    {
+                        inSingleQuotes = true;
+                    }
+                    else if (word.EndsWith("\'"))
+                    {
+                        inSingleQuotes = false;
+                    }
+                    #endregion
+                }
+            }
+        } 
+        #endregion
     }
 }
