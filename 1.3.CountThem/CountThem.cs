@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace _1._3.CountThem
 {
@@ -16,12 +17,12 @@ namespace _1._3.CountThem
             List<string> variables = new List<string>();
 
 
-            using (StreamReader reader = new StreamReader("../../test.txt"))
+            //using (StreamReader reader = new StreamReader("../../test.txt"))
             {
                 while (true)
                 {
-                    //string inputLine = Console.ReadLine();
-                    string inputLine = reader.ReadLine();
+                    string inputLine = Console.ReadLine();
+                    //string inputLine = reader.ReadLine();
                     if (inputLine == "{!}")
                     {
                         break;
@@ -33,27 +34,30 @@ namespace _1._3.CountThem
                     }
                     if (inputLine.Contains("//")) // trim end after //...
                     {
-                        inputLine = inputLine.Remove(inputLine.IndexOf("//"),
-                                inputLine.Length - inputLine.IndexOf("//"));
+                        inputLine = inputLine.Remove(inputLine.IndexOf("//"), inputLine.Length - inputLine.IndexOf("//"));
                     }
 
-                    for (int i = 0; i < inputLine.Length - 3; i++)
+                    for (int i = 0; i < inputLine.Length; i++)
                     {
-
-                        switch (inputLine.Substring(i, 2))
+                        // Comments start & end
+                        if (inputLine[i] == '/' && i < inputLine.Length - 1 && inputLine.Substring(i, 2) == "/*")
                         {
-                            // Comments start & end
-                            case "/*":
-                                isComment = true;
-                                break;
-                            case "*/":
-                                isComment = false;
-                                break;
-                            // String start & end
-                            case "\"":
+                            isComment = true;
+                            i++;
+                        }
+                        else if (inputLine[i] == '*' && i < inputLine.Length - 1 && inputLine.Substring(i, 2) == "*/")
+                        {
+                            isComment = false;
+                            i++;
+                        }
+
+                        // String start & end
+                        switch (inputLine[i])
+                        {
+                            case '\"':
                                 inDoubleQuotes = !inDoubleQuotes;
                                 break;
-                            case "\'":
+                            case '\'':
                                 inSingleQuotes = !inSingleQuotes;
                                 break;
                             default:
@@ -62,13 +66,40 @@ namespace _1._3.CountThem
 
                         if (isComment == false && inputLine[i] == '@')
                         {
-
+                            if (inSingleQuotes && inDoubleQuotes)
+                            {
+                                continue;
+                            }
+                            else if ((inSingleQuotes || inDoubleQuotes) && inputLine[i - 1] == '\\') // \@var in string
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                //extract var
+                                StringBuilder variable = new StringBuilder();
+                                i++; //start check from next char
+                                while (i < inputLine.Length && (char.IsLetterOrDigit(inputLine[i]) || inputLine[i] == '_'))
+                                {
+                                    variable.Append(inputLine[i]);
+                                    i++;
+                                }
+                                i--;
+                                variables.Add(variable.ToString()
+                                    //.TrimStart('\\')
+                                    .TrimStart('\'')
+                                    .TrimStart('\"')
+                                    //.TrimStart('@')
+                                    .TrimEnd('\'')
+                                    .TrimEnd('\"')
+                                    .TrimEnd('\''));
+                            }
                         }
                     }
-
-                    GetVariables(inputLine, variables, ref isComment);
                 }
             }
+
+
 
             #region Print Result
             variables = variables.Distinct().ToList();
@@ -76,85 +107,6 @@ namespace _1._3.CountThem
             Console.WriteLine(variables.Count);
             variables.ForEach(Console.WriteLine);
             #endregion
-        }
-
-        public static void GetVariables(string inputLine, List<string> variables, ref bool isComment)
-        {
-            string[] splitters = {" ", "%", "&", "(", ")",
-                "+", ".", ",", " / ", ":", ";", "<", "=", ">",
-                "?", "[", "]", "^", "{", "|", "}", "~", "-", " * "}; // "-" " * "added - fixed runtime error #8
-
-            string[] words = inputLine.Split(splitters, StringSplitOptions.RemoveEmptyEntries);
-
-            bool inDoubleQuotes = false;
-            bool inSingleQuotes = false;
-
-
-            foreach (string word in words)
-            {
-                switch (word)
-                {
-                    case "/*":
-                        isComment = true;
-                        break;
-                    case "*/":
-                        isComment = false;
-                        break;
-                    case "//":
-                        return;
-                    default:
-                        break;
-                }
-
-                if (isComment)
-                {
-                    continue;
-                }
-                else
-                {       // Check vars in strings
-                    if (word.StartsWith("@") ||
-                        (word.StartsWith("\\@") && !inDoubleQuotes && !inSingleQuotes) ||
-                        (word.StartsWith("\'@") && !inDoubleQuotes) ||
-                        (word.StartsWith("\"@") && !inSingleQuotes))
-                    {
-                        variables.Add(word
-                            .TrimStart('\\')
-                            .TrimStart('\'')
-                            .TrimStart('\"')
-                            .TrimStart('@')
-                            .TrimEnd('\'')
-                            .TrimEnd('\"')
-                            .TrimEnd('\''));
-                    }
-
-                    #region Quotes Check
-                    if (word.StartsWith("\"") && word.EndsWith("\""))
-                    {
-                        //No change in inQuotes
-                    }
-                    else if (word.StartsWith("\'") && word.EndsWith("\'"))
-                    {
-                        //No change in inQuotes
-                    }
-                    else if (word.StartsWith("\""))
-                    {
-                        inDoubleQuotes = true;
-                    }
-                    else if (word.EndsWith("\""))
-                    {
-                        inDoubleQuotes = false;
-                    }
-                    else if (word.StartsWith("\'"))
-                    {
-                        inSingleQuotes = true;
-                    }
-                    else if (word.EndsWith("\'"))
-                    {
-                        inSingleQuotes = false;
-                    }
-                    #endregion
-                }
-            }
         }
     }
 }

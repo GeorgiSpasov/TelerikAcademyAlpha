@@ -1,7 +1,7 @@
 // String test
 \@notEscapedSlash;
 @test = "Random string \@valid_var";
-new line "@singleCommentVar";
+new line "@singleStringVar";
 words "start of double quoted \@escapedSlash '@escapedSingle'";
 words "start of double quoted @notEescapedSingle";
 new line 'start of single quoted "@escapedDouble" text';
@@ -10,9 +10,30 @@ last line "@notEscapedInDoubleQuotes" text;
 {!}
 
 
+/* This is @test in comment */
+@myVar = "Some string \@var4 with var escaped.";
+print(@test); print("@foo, @bar");
+// Another comment with variable @invalid
+{!}
+
+
+// Multi-line comments test
+@first // Comment end of line
+Clean line without @comments;
+@beforeMulti /* start of multi-line @comment multi-line
+second line comment
+end of multi-line comment */  @varAfterMulti; /* @start */ @of /*multi-line
+@second_line comment
+end of multi-line comment */
+/**/
+@last
+// Last single line comment
+{!}
+
+
 // Variables validation
 Valid variables
-@testValid
+@testValid some text
 @test1/@Test1
 @Johnie
 @_test121
@@ -27,22 +48,13 @@ Arrays are declared as you know them from C#
 @arr[@index]
 {!}
 
-// Multi-line comments test
-@first // Comment end of line
-Clean line without @comments;
-@beforeMulti /* start of multi-line comment multi-line comment multi-line comment
-second line comment
-end of multi-line comment */  @varAfterMulti; /* start */ of /*multi-line
-second line comment
-end of multi-line comment */
-/**/
-@last
-// Last single line comment
+// String test
+\@notEscapedSlash;
+@test = "Random string \@valid_var";
+new line "@singleCommentVar";
+words "start of double quoted \@escapedSlash '@escapedSingle'";
+words "start of double quoted @notEescapedSingle";
+new line 'start of single quoted "@escapedDouble" text';
+new line 'start of single quoted @notEscapedDouble text';
+last line "@notEscapedInDoubleQuotes" text;
 {!}
-
-/* This is @test in comment */
-@myVar = "Some string \@var4 with var escaped.";
-print(@test); print("@foo, @bar");
-// Another comment with variable @invalid
-{!}
-
