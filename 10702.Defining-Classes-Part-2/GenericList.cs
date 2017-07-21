@@ -33,7 +33,7 @@ namespace _10702.Defining_Classes_Part_2
             {
                 return this.fillIndex;
             }
-            set
+            private set
             {
                 this.fillIndex = value;
             }
@@ -49,10 +49,8 @@ namespace _10702.Defining_Classes_Part_2
 
         public void AddElement(T element)
         {
-            if (this.FillIndex >= this.Elements.Length)
-            {
-                this.AutoGrow();
-            }
+            this.AutoGrow();
+
             this.Elements[this.FillIndex] = element;
             this.FillIndex++;
         }
@@ -76,15 +74,16 @@ namespace _10702.Defining_Classes_Part_2
                 }
                 this.Elements[this.FillIndex] = default(T);
             }
+            if (this.FillIndex > 0)
+            {
+                this.FillIndex--;
+            }
         }
 
         public void InsertElementAt(int index, T element)
         {
-            if (fillIndex >= this.Elements.Length)
-            {
-                this.AutoGrow();
-            }
-
+            this.AutoGrow();
+            
             T shiftedElement;
             int shiftIndex = this.FillIndex;
             while (shiftIndex >= index)
@@ -95,6 +94,7 @@ namespace _10702.Defining_Classes_Part_2
                 shiftIndex -= 2;
             }
             this.Elements[index] = element;
+            this.FillIndex++;
         }
 
         public void ClearList()
@@ -119,9 +119,15 @@ namespace _10702.Defining_Classes_Part_2
 
         private void AutoGrow()
         {
+            if (this.FillIndex != this.Elements.Length)
+            {
+                return;
+            }
+
             T[] newArray = new T[this.Elements.Length * 2];
             Array.Copy(this.Elements, newArray, this.FillIndex);
             this.Elements = newArray;
+            this.FillIndex *= 2;
         }
 
         /*TODO:
