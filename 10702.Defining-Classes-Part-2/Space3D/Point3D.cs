@@ -2,7 +2,7 @@
 {
     public struct Point3D
     {
-        private static Point3D o = new Point3D(0, 0, 0);
+        private static readonly Point3D o = new Point3D(0, 0, 0);
 
         public Point3D(int x, int y, int z)
         {
