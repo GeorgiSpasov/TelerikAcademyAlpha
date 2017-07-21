@@ -52,35 +52,21 @@ namespace _1._3.CountThem
                         isComment = false;
                         i++;
                     }
-                    else if (input[i] == '\"' && !isComment) //String start & end + check for escaping -> && input[i-1] != '\\'
-                    {
-                        //if (inSingleQuotes == true && i < input.Length - 1 && !isComment && input[i + 1] == '@')
-                        {
-                            inDoubleQuotes = !inDoubleQuotes;
-                        }
-                        //else if (inSingleQuotes == false)
-                        //{
-                        //    inDoubleQuotes = !inDoubleQuotes;
-                        //}
-                    }
                     else if (input[i] == '\'' && !isComment)
                     {
-                        //if (inDoubleQuotes == true && i < input.Length - 1 && !isComment && input[i + 1] == '@')
-                        {
-                            inSingleQuotes = !inSingleQuotes;
-                        }
-                        //else if (inDoubleQuotes == false)
-                        //{
-                        //    inSingleQuotes = !inSingleQuotes;
-                        //}
+                        inSingleQuotes = !inSingleQuotes;
                     }
-                    else if (input[i] == '/' && !inSingleQuotes && !inDoubleQuotes && i < input.Length - 1 && input[i + 1] == '/') //The start of line is handled above
+                    else if (input[i] == '\"' && !isComment) //String start & end 
+                    {
+                        inDoubleQuotes = !inDoubleQuotes;
+                    }
+                    else if (input[i] == '/' && !inSingleQuotes && !inDoubleQuotes && i < input.Length - 1 && input[i + 1] == '/') //The start of line is handled above && "https://someUrl.com" @varAfterURL
                     {
                         break;
                     }
                     else if (!isComment && input[i] == '@')
                     {
-                        if ((inSingleQuotes ^ inDoubleQuotes) && input[i - 1] == '\\') // \@var in string -> "Tom's \@hardware" - works with ||
+                        if ((inSingleQuotes ^ inDoubleQuotes) && input[i - 1] == '\\')
                         {
                             continue;
                         }
