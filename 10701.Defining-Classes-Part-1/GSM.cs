@@ -157,17 +157,9 @@ namespace _10701.Defining_Classes_Part_1
         }
         public override string ToString()
         {
-            StringBuilder result = new StringBuilder(string.Format($"{this.Manufacturer} {this.Model} \nPrice: {this.Price.ToString("C", new CultureInfo("en-US"))}. Owner: {this.Owner}\n{this.Battery}\n{this.Display}\n"));
+            string result = string.Format($"{this.Manufacturer} {this.Model}\nPrice: {this.Price.ToString("C", new CultureInfo("en-US"))}. Owner: {this.Owner}\n{this.Battery}\n{this.Display}\n{(this.CallHistory != null && this.CallHistory.Count > 0 ? "Call history:\n" + string.Join("", this.CallHistory) : "\n")}");
 
-            if (this.CallHistory != null && this.CallHistory.Count != 0)
-            {
-                result.Append("Call History:\n");
-                foreach (Call call in this.CallHistory)
-                {
-                    result.Append(call);
-                }
-            }
-            return result.ToString();
+            return result;
         }
     }
 }
