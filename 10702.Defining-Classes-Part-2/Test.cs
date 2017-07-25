@@ -1,6 +1,7 @@
 ﻿using System;
 using _10702.Defining_Classes_Part_2.Space3D;
 using System.Text;
+using System.Collections.Generic;
 
 namespace _10702.Defining_Classes_Part_2
 {
@@ -9,28 +10,41 @@ namespace _10702.Defining_Classes_Part_2
     {
         static void Main(string[] args)
         {
+            //Path path = new Path();
+            //path.PointSequence.AddRange(new Point3D[] {
+            //    new Point3D(1, 1, 1),
+            //    new Point3D(2, 2, 2),
+            //    new Point3D(3, 3, 3),
+            //    new Point3D(4, 4, 4),
+            //    new Point3D(5, 5, 5)
+            //});
+            //PathStorage.StorePath(path.PointSequence, "path");
+
+            //List<Point3D> restoredFromFile = PathStorage.RestorePath("../../path.txt");
+            //Console.WriteLine("Restored path:\n" + string.Join("\n",restoredFromFile));
+
             #region GenericList
-            //GenericList<Point3D> pointsArray = new GenericList<Point3D>(2);
-            //pointsArray.AddElement(Point3D.O); // Not printed (default value)
-            //pointsArray.AddElement(new Point3D(1, 1, 1));
-            //pointsArray.AddElement(new Point3D(2, 2, 2));
-            //pointsArray.AddElement(new Point3D(3, 3, 3));
-            //pointsArray.AddElement(new Point3D(4, 4, 4));
-            //pointsArray.AddElement(new Point3D(5, 5, 5));
+            GenericList<Point3D> pointsArray = new GenericList<Point3D>(2);
+            pointsArray.AddElement(Point3D.O); // Not printed (default value)
+            pointsArray.AddElement(new Point3D(1, 1, 1));
+            pointsArray.AddElement(new Point3D(2, 2, 2));
+            pointsArray.AddElement(new Point3D(3, 3, 3));
+            pointsArray.AddElement(new Point3D(4, 4, 4));
+            pointsArray.AddElement(new Point3D(5, 5, 5));
 
-            //Console.WriteLine(pointsArray + "\n");
-            //Console.WriteLine(pointsArray.GetElement(2) + "\n");
+            Console.WriteLine(pointsArray + "\n");
+            Console.WriteLine(pointsArray.GetElement(2) + "\n");
 
-            //pointsArray.RemoveElement(2);
-            //Console.WriteLine(pointsArray + "\n");
+            pointsArray.RemoveElement(2);
+            Console.WriteLine(pointsArray + "\n");
 
-            //pointsArray.InsertElementAt(2, new Point3D(9, 9, 9));
-            //Console.WriteLine(pointsArray + "\n");
+            pointsArray.InsertElementAt(2, new Point3D(9, 9, 9));
+            Console.WriteLine(pointsArray + "\n");
 
-            //Console.WriteLine(pointsArray.FindElement(new Point3D(7, 7, 7)));
+            Console.WriteLine(pointsArray.FindElement(new Point3D(7, 7, 7)));
 
-            //pointsArray.ClearList();
-            //Console.WriteLine(pointsArray + "\n"); 
+            pointsArray.ClearList();
+            Console.WriteLine(pointsArray + "\n");
             #endregion
 
             #region Matrix
@@ -99,7 +113,7 @@ namespace _10702.Defining_Classes_Part_2
             foreach (VersionAttribute attr in allAttributes)
             {
                 Console.WriteLine($"Version {attr.Major}.{attr.Minor}");
-            } 
+            }
             #endregion
         }
 

@@ -1,6 +1,8 @@
-﻿namespace _10702.Defining_Classes_Part_2.Space3D
+﻿using System;
+
+namespace _10702.Defining_Classes_Part_2.Space3D
 {
-    public struct Point3D
+    public struct Point3D : IComparable<Point3D>
     {
         private static readonly Point3D o = new Point3D(0, 0, 0);
 
@@ -18,6 +20,18 @@
         public override string ToString()
         {
             return string.Format($"[x:{this.X} y:{this.Y} z:{this.Z}]");
+        }
+
+        public int CompareTo(Point3D other)
+        {
+            int result = 0;
+            if ((this.X + this.Y + this.Z) < (other.X + other.Y + other.Z))
+            {
+                result = -1;
+            }
+
+            return result;
+            throw new NotImplementedException();
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 namespace _10702.Defining_Classes_Part_2
 {
     public class GenericList<T>
+        where T : IComparable<T>
     {
         private T[] elements;
         private int fillIndex;
@@ -83,7 +84,7 @@ namespace _10702.Defining_Classes_Part_2
         public void InsertElementAt(int index, T element)
         {
             this.AutoGrow();
-            
+
             T shiftedElement;
             int shiftIndex = this.FillIndex;
             while (shiftIndex >= index)
@@ -119,15 +120,30 @@ namespace _10702.Defining_Classes_Part_2
 
         private void AutoGrow()
         {
-            if (this.FillIndex != this.Elements.Length)
+            if (this.FillIndex < this.Elements.Length)
             {
                 return;
             }
+            else
+            {
+                T[] newArray = new T[this.Elements.Length * 2];
+                Array.Copy(this.Elements, newArray, this.FillIndex);
+                this.Elements = newArray;
+            }
+        }
 
-            T[] newArray = new T[this.Elements.Length * 2];
-            Array.Copy(this.Elements, newArray, this.FillIndex);
-            this.Elements = newArray;
-            this.FillIndex *= 2;
+        public T Min()
+        {
+            T result = this.Elements[0];
+            foreach (T item in this.Elements)
+            {
+                if (item.CompareTo(result) < 0)
+                {
+                    result = item;
+                }
+            }
+
+            return result;
         }
 
         /*TODO:
