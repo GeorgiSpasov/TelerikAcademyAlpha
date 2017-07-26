@@ -29,7 +29,7 @@ namespace _10703.OOPPrinciples_Part_1
 
         public override string ToString()
         {
-            return string.Format($"{base.FirstName} {this.LastName} - {this.Grade} grade");
+            return string.Format($"{base.FirstName,-8} {this.LastName,-8} - {this.Grade}. grade");
         }
     }
 }
