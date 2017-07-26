@@ -134,10 +134,26 @@ namespace _10702.Defining_Classes_Part_2
 
         public T Min()
         {
+            //T result = this.Elements.Aggregate((a, b) => a.CompareTo(b) < 0 ? a : b);
+
             T result = this.Elements[0];
             foreach (T item in this.Elements)
             {
                 if (item.CompareTo(result) < 0)
+                {
+                    result = item;
+                }
+            }
+
+            return result;
+        }
+
+        public T Max()
+        {
+            T result = this.Elements[0];
+            foreach (T item in this.Elements)
+            {
+                if (item.CompareTo(result) > 0)
                 {
                     result = item;
                 }

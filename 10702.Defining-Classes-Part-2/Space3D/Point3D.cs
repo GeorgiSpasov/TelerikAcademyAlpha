@@ -29,6 +29,14 @@ namespace _10702.Defining_Classes_Part_2.Space3D
             {
                 result = -1;
             }
+            else if ((this.X + this.Y + this.Z) == (other.X + other.Y + other.Z))
+            {
+                result = 0;
+            }
+            else
+            {
+                result = (this.X + this.Y + this.Z) - (other.X + other.Y + other.Z);
+            }
 
             return result;
             throw new NotImplementedException();
