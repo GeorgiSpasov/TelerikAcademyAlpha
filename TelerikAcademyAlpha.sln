@@ -109,7 +109,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10703.OOPPrinciples_Part_1"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Exam2", "1.Exam2", "{D247F7CC-C02A-4659-8F7B-494F761FA20B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlympicGames", "1.4.OlympicGames\OlympicGames.csproj", "{46657D75-8952-4500-AAD1-539FD248E510}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1.4.OlympicGames", "1.4.OlympicGames\1.4.OlympicGames.csproj", "{46657D75-8952-4500-AAD1-539FD248E510}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
