@@ -20,10 +20,7 @@ namespace OlympicGames.Core.Commands
         {
             // TODO: Implement here
             this.key = commandParameters.Count == 0 ? "firstname" : commandParameters[0];
-
             this.order = commandParameters.Count < 2 ? "asc" : commandParameters[1];
-
-            this.Committee.Olympians.OrderBy(o => o.FirstName);
         }
 
         // Use it. It works!

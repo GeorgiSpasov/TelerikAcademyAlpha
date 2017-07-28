@@ -26,9 +26,9 @@ namespace OlympicGames.Olympics
             }
         }
 
-        public override string ToString()
+        public override string OlympianSpecific()
         {
-            return string.Format($"SPRINTER: {this.FirstName} {this.LastName} from {this.Country}\n{(this.personalRecords.Count == 0 ? GlobalConstants.NoPersonalRecordsSet : GlobalConstants.PersonalRecords + "\n" + string.Join("\n", this.personalRecords.Select(r => r.Key + "m: " + r.Value + "s")))}");
+            return string.Format($"{(this.personalRecords.Count == 0 ? GlobalConstants.NoPersonalRecordsSet : GlobalConstants.PersonalRecords + "\n" + string.Join("\n", this.personalRecords.Select(r => r.Key + "m: " + r.Value + "s")))}");
         }
     }
 }

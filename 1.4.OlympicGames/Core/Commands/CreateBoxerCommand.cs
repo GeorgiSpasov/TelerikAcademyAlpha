@@ -1,34 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-
-using OlympicGames.Core.Contracts;
+﻿using OlympicGames.Core.Commands.Abstracts;
 using OlympicGames.Olympics.Contracts;
 using OlympicGames.Utils;
-using OlympicGames.Core.Commands.Abstracts;
-using OlympicGames.Olympics;
-using OlympicGames.Olympics.Enums;
+using System.Collections.Generic;
 
 namespace OlympicGames.Core.Commands
 {
-    public class CreateBoxerCommand : Command, ICommand
+    public sealed class CreateBoxerCommand : CreateOlympian
     {
-        private Boxer boxer;
+        private readonly string category;
+        private readonly int wins;
+        private readonly int losses;
+
         public CreateBoxerCommand(IList<string> commandLine) : base(commandLine)
         {
             Validator.ValidateParametersCount(commandLine, 4);
+            Validator.ValidateNumber(commandLine[4]);
+            Validator.ValidateNumber(commandLine[5]);
 
-            boxer = new Boxer(commandLine[0],
-                commandLine[1], commandLine[2],
-                (BoxingCategory)Enum.Parse(typeof(BoxingCategory), commandLine[3], true),
-                commandLine.Count > 4 ? int.Parse(commandLine[4]) : 0,
-                commandLine.Count > 5 ? int.Parse(commandLine[5]) : 0);
-
-            this.Committee.Olympians.Add(boxer);
+            this.category = commandLine[3];
+            this.wins = commandLine.Count > 4 ? int.Parse(commandLine[4]) : 0;
+            this.losses = commandLine.Count > 5 ? int.Parse(commandLine[5]) : 0;
         }
 
-        public override string Execute()
+        public override IOlympian CreatePerson()
         {
-            return string.Format("Created Boxer\n" + this.boxer);
+            return this.Factory.CreateBoxer(this.firstName, this.lastName, this.country, this.category, this.wins, this.losses);
         }
     }
 }

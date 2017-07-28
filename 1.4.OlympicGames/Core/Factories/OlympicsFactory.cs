@@ -25,10 +25,7 @@ namespace OlympicGames.Core.Factories
         public IOlympian CreateBoxer(string firstName, string lastName, string country, string category, int wins, int losses)
         {
             // TODO: Implement this
-            BoxingCategory parsedCategory = BoxingCategory.Middleweight;
-            Enum.TryParse(category, out parsedCategory);
-
-            return new Boxer(firstName, lastName, country, parsedCategory, wins, losses);
+            return new Boxer(firstName, lastName, country, (BoxingCategory)Enum.Parse(typeof(BoxingCategory), category, true), wins, losses);
         }
 
         public IOlympian CreateSprinter(string firstName, string lastName, string country, IDictionary<string, double> records)

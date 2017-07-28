@@ -57,5 +57,12 @@ namespace OlympicGames.Olympics
                 this.country = value;
             }
         }
+
+        public abstract string OlympianSpecific();
+
+        public override string ToString()
+        {
+            return string.Format($"{this.GetType().Name.ToUpper()}: {this.FirstName} {this.LastName} from {this.Country}\n{this.OlympianSpecific()}");
+        }
     }
 }

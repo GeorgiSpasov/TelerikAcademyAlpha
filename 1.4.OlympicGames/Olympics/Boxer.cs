@@ -1,8 +1,6 @@
 ﻿using OlympicGames.Olympics.Contracts;
 using OlympicGames.Olympics.Enums;
 using OlympicGames.Utils;
-using System;
-using System.Linq;
 
 namespace OlympicGames.Olympics
 {
@@ -39,11 +37,6 @@ namespace OlympicGames.Olympics
             }
             private set
             {
-                //if (!value.ToString().All(char.IsDigit))
-                //{
-                //    throw new ArgumentException(GlobalConstants.WinsLossesMustBeNumbers);
-                //}
-                Validator.ValidateNumber(value);
                 Validator.ValidateMinAndMaxNumber(value, 0, 100, "Wins must be between 0 and 100!");
                 this.wins = value;
             }
@@ -57,19 +50,14 @@ namespace OlympicGames.Olympics
             }
             private set
             {
-                //if (!value.ToString().All(char.IsDigit))
-                //{
-                //    throw new ArgumentException(GlobalConstants.WinsLossesMustBeNumbers);
-                //}
-                Validator.ValidateNumber(value);
                 Validator.ValidateMinAndMaxNumber(value, 0, 100, "Losses must be between 0 and 100!");
                 this.losses = value;
             }
         }
 
-        public override string ToString()
+        public override string OlympianSpecific()
         {
-            return string.Format($"BOXER: {this.FirstName} {this.LastName} from {this.Country}\nCategory: {this.Category}\nWins: {this.Wins}\nLosses: {this.Losses}");
+            return string.Format($"Category: {this.Category}\nWins: {this.Wins}\nLosses: {this.Losses}");
         }
     }
 }
