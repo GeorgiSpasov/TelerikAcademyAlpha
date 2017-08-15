@@ -32,10 +32,7 @@ namespace Academy.Models
                 {
                     throw new ArgumentException("Lecture's name should be between 5 and 30 symbols long!");
                 }
-                else
-                {
-                    this.name = value;
-                }
+                this.name = value;
             }
         }
 

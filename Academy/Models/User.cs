@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Academy.Models
 {
@@ -27,10 +23,7 @@ namespace Academy.Models
                 {
                     throw new ArgumentException("User's username should be between 3 and 16 symbols long!");
                 }
-                else
-                {
-                    this.username = value;
-                }
+                this.username = value;
             }
         }
 
@@ -38,7 +31,9 @@ namespace Academy.Models
 
         public override string ToString()
         {
-            string result = string.Format($"* {this.GetType().Name}:\n - Username: {this.Username}\n {this.GetUserSpecificData()}");
+            string result = string.Format($@"* {this.GetType().Name}:
+ - Username: {this.Username}
+ {this.GetUserSpecificData()}");
 
             return result;
         }

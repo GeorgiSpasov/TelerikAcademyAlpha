@@ -17,7 +17,7 @@ namespace Academy.Models
             this.Course = course;
             this.ExamPoints = examPoints;
             this.CoursePoints = coursePoints;
-            this.Grade = DefineGrade(examPoints, coursePoints);
+            this.Grade = CalculateGrade(examPoints, coursePoints);
         }
 
         public ICourse Course { get; set; }
@@ -34,10 +34,7 @@ namespace Academy.Models
                 {
                     throw new ArgumentException("Course result's exam points should be between 0 and 1000!");
                 }
-                else
-                {
-                    this.examPoints = value;
-                }
+                this.examPoints = value;
             }
         }
 
@@ -53,10 +50,7 @@ namespace Academy.Models
                 {
                     throw new ArgumentException("Course result's course points should be between 0 and 125!");
                 }
-                else
-                {
-                    this.coursePoints = value;
-                }
+                this.coursePoints = value;
             }
         }
 
@@ -72,7 +66,7 @@ namespace Academy.Models
             }
         }
 
-        public Grade DefineGrade(float examPoints, float coursePoints)
+        public Grade CalculateGrade(float examPoints, float coursePoints)
         {
             Grade result = 0;
             if (examPoints >= 65 || coursePoints >= 75)
@@ -93,7 +87,7 @@ namespace Academy.Models
 
         public override string ToString()
         {
-            string result = string.Format($"  *{this.Course.Name}: Points - {this.CoursePoints}, Grade - {this.Grade}");
+            string result = string.Format($" * {this.Course.Name}: Points - {this.CoursePoints}, Grade - {this.Grade}");
 
             return result;
         }

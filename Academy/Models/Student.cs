@@ -1,26 +1,20 @@
 ﻿using Academy.Models.Contracts;
+using Academy.Models.Enums;
+using Academy.Models.Utils.Contracts;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Academy.Models.Utils.Contracts;
-using Academy.Models.Enums;
 
 namespace Academy.Models
 {
     public class Student : User, IStudent
     {
         private Track track;
-        public Student(string username, Track track) : this(username, track, new List<ICourseResult>())
-        {
 
-        }
-
-        public Student(string username, Track track, IList<ICourseResult> courseResults = null) : base(username)
+        public Student(string username, Track track) : base(username)
         {
             this.Track = track;
-            this.CourseResults = courseResults;
+            this.CourseResults = new List<ICourseResult>();
         }
 
         public Track Track
@@ -35,10 +29,7 @@ namespace Academy.Models
                 {
                     throw new ArgumentException("The provided track is not valid!");
                 }
-                else
-                {
-                    this.track = value;
-                }
+                this.track = value;
             }
         }
 
@@ -47,7 +38,9 @@ namespace Academy.Models
         public override string GetUserSpecificData()
         {
             StringBuilder result = new StringBuilder();
-            result.AppendFormat($"- Track: {this.Track}\n - Course results:\n ");
+            result.AppendFormat($@"- Track: {this.Track}
+ - Course results:
+ ");
             if (this.CourseResults == null || this.CourseResults.Count == 0)
             {
                 result.Append(" * User has no course results!");
