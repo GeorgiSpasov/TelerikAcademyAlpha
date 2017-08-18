@@ -125,7 +125,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "20203.SortList", "20203.Sor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1.5.Academy", "1.5.Academy\1.5.Academy.csproj", "{37BA7D68-D803-4820-9586-8EFC016C9144}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Traveller", "Traveller\Traveller.csproj", "{B5469B66-604D-4D40-81A3-43BB9968D2DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1.6.Traveller", "1.6.Traveller\1.6.Traveller.csproj", "{B5469B66-604D-4D40-81A3-43BB9968D2DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

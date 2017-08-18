@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Abstracts\CreateVehicleCommand.cs" />
     <Compile Include="Commands\Contracts\ICommand.cs" />
     <Compile Include="Commands\Creating\CreateAirplaneCommand.cs" />
     <Compile Include="Commands\Creating\CreateJourneyCommand.cs" />

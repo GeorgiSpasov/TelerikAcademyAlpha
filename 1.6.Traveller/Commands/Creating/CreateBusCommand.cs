@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using Traveller.Commands.Abstracts;
 using Traveller.Core.Contracts;
+using Traveller.Models.Vehicles.Contracts;
 
 namespace Traveller.Commands.Creating
 {
-    public class CreateBusCommand : Command
+    public class CreateBusCommand : CreateVehicleCommand
     {
         public CreateBusCommand(ITravellerFactory factory, IEngine engine) : base(factory, engine)
         {
         }
 
-        public override string Execute(IList<string> parameters)
+        public override IVehicle CreateVehicle(IList<string> parameters)
         {
             int passengerCapacity;
             decimal pricePerKilometer;
@@ -27,10 +28,8 @@ namespace Traveller.Commands.Creating
             }
 
             var bus = this.factory.CreateBus(passengerCapacity, pricePerKilometer);
-            this.engine.Vehicles.Add(bus);
 
-            return $"Vehicle with ID {engine.Vehicles.Count - 1} was created.";
+            return bus;
         }
-
     }
 }
