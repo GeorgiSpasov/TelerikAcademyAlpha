@@ -50,7 +50,7 @@ namespace Academy.Models
             {
                 if (value < 1 || value > 7)
                 {
-                    throw new ArgumentException("The number of 3 / 11 lectures per week must be between 1 and 7!");
+                    throw new ArgumentException("The number of lectures per week must be between 1 and 7!");
                 }
                 this.lecturesPerWeek = value;
             }
