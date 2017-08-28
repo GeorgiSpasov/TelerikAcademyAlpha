@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Traveller.Commands.Abstracts;
 using Traveller.Core.Contracts;
 using Traveller.Models.Contracts;
@@ -23,7 +20,7 @@ namespace Traveller.Commands.Creating
 
             try
             {
-                journey = this.engine.Journeys[int.Parse(parameters[0])];
+                journey = base.Engine.Journeys[int.Parse(parameters[0])];
                 administrativeCosts = decimal.Parse(parameters[1]);
             }
             catch
@@ -31,10 +28,10 @@ namespace Traveller.Commands.Creating
                 throw new ArgumentException("Failed to parse CreateTicket command parameters.");
             }
 
-            var ticket = this.factory.CreateTicket(journey, administrativeCosts);
-            this.engine.Tickets.Add(ticket);
+            var ticket = base.Factory.CreateTicket(journey, administrativeCosts);
+            base.Engine.Tickets.Add(ticket);
 
-            return $"Ticket with ID {engine.Tickets.Count - 1} was created.";
+            return $"Ticket with ID {Engine.Tickets.Count - 1} was created.";
         }
     }
 }

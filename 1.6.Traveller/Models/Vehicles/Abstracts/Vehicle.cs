@@ -6,7 +6,7 @@ namespace Traveller.Models.Vehicles.Abstracts
 {
     public abstract class Vehicle : IVehicle
     {
-        protected int passangerCapacity;
+        private int passangerCapacity;
         private decimal pricePerKilometer;
         private VehicleType type;
 

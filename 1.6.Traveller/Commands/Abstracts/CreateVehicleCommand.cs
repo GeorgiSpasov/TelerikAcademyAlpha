@@ -6,22 +6,26 @@ namespace Traveller.Commands.Abstracts
 {
     public abstract class CreateVehicleCommand : Command
     {
-        protected int passengerCapacity;
-        protected decimal pricePerKilometer;
+        private int passengerCapacity;
+        private decimal pricePerKilometer;
         private IVehicle vehicle;
 
         public CreateVehicleCommand(ITravellerFactory factory, IEngine engine) : base(factory, engine)
         {
         }
 
+        public int PassengerCapacity { get; set; }
+
+        public decimal PricePerKilometer { get; set; }
+
         public abstract IVehicle CreateVehicle(IList<string> parameters);
 
         public override string Execute(IList<string> parameters)
         {
             var vehicle = this.CreateVehicle(parameters);
-            this.engine.Vehicles.Add(vehicle);
+            base.Engine.Vehicles.Add(vehicle);
 
-            return $"Vehicle with ID {engine.Vehicles.Count - 1} was created.";
+            return $"Vehicle with ID {Engine.Vehicles.Count - 1} was created.";
         }
     }
 }

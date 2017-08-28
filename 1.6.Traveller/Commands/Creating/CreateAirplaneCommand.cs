@@ -30,7 +30,7 @@ namespace Traveller.Commands.Creating
                 throw new ArgumentException("Failed to parse CreateAirplane command parameters.");
             }
 
-            var airplane = this.factory.CreateAirplane(passengerCapacity, pricePerKilometer, hasFreeFood);
+            var airplane = base.Factory.CreateAirplane(passengerCapacity, pricePerKilometer, hasFreeFood);
 
             return airplane;
         }

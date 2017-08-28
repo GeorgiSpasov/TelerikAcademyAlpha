@@ -29,7 +29,7 @@ namespace Traveller.Commands.Creating
                 throw new ArgumentException("Failed to parse CreateTrain command parameters.");
             }
 
-            var train = this.factory.CreateTrain(passengerCapacity, pricePerKilometer, cartsCount);
+            var train = base.Factory.CreateTrain(passengerCapacity, pricePerKilometer, cartsCount);
 
             return train;
         }

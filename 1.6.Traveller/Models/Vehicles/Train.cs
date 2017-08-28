@@ -19,7 +19,7 @@ namespace Traveller.Models.Vehicles
         {
             get
             {
-                return base.passangerCapacity;
+                return base.PassangerCapacity;
             }
             protected set
             {
@@ -27,7 +27,7 @@ namespace Traveller.Models.Vehicles
                 {
                     throw new ArgumentOutOfRangeException("A train cannot have less than 30 passengers or more than 150 passengers.");
                 }
-                base.passangerCapacity = value;
+                base.PassangerCapacity = value;
             }
         }
 

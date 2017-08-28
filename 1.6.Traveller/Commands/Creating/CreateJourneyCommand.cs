@@ -24,17 +24,17 @@ namespace Traveller.Commands.Creating
                 startLocation = parameters[0];
                 destination = parameters[1];
                 distance = int.Parse(parameters[2]);
-                vehicle = this.engine.Vehicles[int.Parse(parameters[3])];
+                vehicle = base.Engine.Vehicles[int.Parse(parameters[3])];
             }
             catch
             {
                 throw new ArgumentException("Failed to parse CreateJourney command parameters.");
             }
 
-            var journey = this.factory.CreateJourney(startLocation, destination, distance, vehicle);
-            this.engine.Journeys.Add(journey);
+            var journey = base.Factory.CreateJourney(startLocation, destination, distance, vehicle);
+            base.Engine.Journeys.Add(journey);
 
-            return $"Journey with ID {engine.Journeys.Count - 1} was created.";
+            return $"Journey with ID {Engine.Journeys.Count - 1} was created.";
         }
 
     }

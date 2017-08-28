@@ -27,7 +27,7 @@ namespace Traveller.Commands.Creating
                 throw new ArgumentException("Failed to parse CreateBus command parameters.");
             }
 
-            var bus = this.factory.CreateBus(passengerCapacity, pricePerKilometer);
+            var bus = base.Factory.CreateBus(passengerCapacity, pricePerKilometer);
 
             return bus;
         }
