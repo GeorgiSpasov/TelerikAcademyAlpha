@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _20806.GoldFever
 {
@@ -14,13 +11,18 @@ namespace _20806.GoldFever
             int[] prices = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
             long sum = 0;
 
-            int boughtOunzes = 0;
-            int money = 0;
-
-
-            for (int i = prices.Length - 1; i > 1; i--)
+            int max = 0;
+            for (int i = prices.Length - 1; i >= 0; i--)
             {
-
+                if (prices[i] >= max)
+                {
+                    max = prices[i];
+                }
+                else
+                {
+                    sum += max;
+                    sum -= prices[i];
+                }
             }
 
             Console.WriteLine(sum);
