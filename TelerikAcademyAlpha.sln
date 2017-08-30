@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "102.Multidimensional Arrays", "102.Multidimensional Arrays", "{112DA7AE-6BDC-4F38-BB46-442F008F1FA5}"
 EndProject
@@ -126,6 +126,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1.5.Academy", "1.5.Academy\1.5.Academy.csproj", "{37BA7D68-D803-4820-9586-8EFC016C9144}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1.6.Traveller", "1.6.Traveller\1.6.Traveller.csproj", "{B5469B66-604D-4D40-81A3-43BB9968D2DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "208.Alpha-DSA", "208.Alpha-DSA", "{F296B3A2-CA03-4635-9661-C43E986BC093}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "20806.GoldFever", "20806.GoldFever\20806.GoldFever.csproj", "{541B4076-65BE-45B0-AAF8-31B93487DC6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -333,6 +337,10 @@ Global
 		{B5469B66-604D-4D40-81A3-43BB9968D2DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5469B66-604D-4D40-81A3-43BB9968D2DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5469B66-604D-4D40-81A3-43BB9968D2DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{541B4076-65BE-45B0-AAF8-31B93487DC6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{541B4076-65BE-45B0-AAF8-31B93487DC6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{541B4076-65BE-45B0-AAF8-31B93487DC6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{541B4076-65BE-45B0-AAF8-31B93487DC6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -398,5 +406,10 @@ Global
 		{AD806E12-8CBF-45B2-9293-C22E1D4B58F8} = {8D02DFAA-3911-4D0C-98E2-9D788C8185DB}
 		{37BA7D68-D803-4820-9586-8EFC016C9144} = {D247F7CC-C02A-4659-8F7B-494F761FA20B}
 		{B5469B66-604D-4D40-81A3-43BB9968D2DE} = {D247F7CC-C02A-4659-8F7B-494F761FA20B}
+		{F296B3A2-CA03-4635-9661-C43E986BC093} = {9513553E-4BBD-43C4-8B27-D4CB19DDF744}
+		{541B4076-65BE-45B0-AAF8-31B93487DC6D} = {F296B3A2-CA03-4635-9661-C43E986BC093}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7464D531-C088-4472-B447-09605BA2D2D4}
 	EndGlobalSection
 EndGlobal
