@@ -135,6 +135,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Exam1", "2.Exam1", "{1856
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2.3.Aquapark", "2.3.Aquapark\2.3.Aquapark.csproj", "{B61D68C9-8311-4E6D-B50E-259A2AF34B41}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2.1.OrdersSystem", "2.1.OrdersSystem\2.1.OrdersSystem.csproj", "{643E6E18-5A27-473C-83D7-99E7C43E8D9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -349,6 +351,10 @@ Global
 		{B61D68C9-8311-4E6D-B50E-259A2AF34B41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B61D68C9-8311-4E6D-B50E-259A2AF34B41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B61D68C9-8311-4E6D-B50E-259A2AF34B41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{643E6E18-5A27-473C-83D7-99E7C43E8D9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{643E6E18-5A27-473C-83D7-99E7C43E8D9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{643E6E18-5A27-473C-83D7-99E7C43E8D9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{643E6E18-5A27-473C-83D7-99E7C43E8D9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -418,6 +424,7 @@ Global
 		{541B4076-65BE-45B0-AAF8-31B93487DC6D} = {F296B3A2-CA03-4635-9661-C43E986BC093}
 		{185614E3-F09A-4A8F-B0AB-0E8F5D63813C} = {9513553E-4BBD-43C4-8B27-D4CB19DDF744}
 		{B61D68C9-8311-4E6D-B50E-259A2AF34B41} = {185614E3-F09A-4A8F-B0AB-0E8F5D63813C}
+		{643E6E18-5A27-473C-83D7-99E7C43E8D9C} = {185614E3-F09A-4A8F-B0AB-0E8F5D63813C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7464D531-C088-4472-B447-09605BA2D2D4}
