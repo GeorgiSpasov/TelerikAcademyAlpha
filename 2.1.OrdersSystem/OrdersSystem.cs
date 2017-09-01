@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using Wintellect.PowerCollections;
 
 namespace _2._1.OrdersSystem
 {
@@ -10,7 +10,11 @@ namespace _2._1.OrdersSystem
     {
         static void Main(string[] args)
         {
-            List<Order> orders = new List<Order>();
+
+            Dictionary<string, OrderedBag<Order>> consumers = new Dictionary<string, OrderedBag<Order>>();
+            OrderedMultiDictionary<decimal, Order> ordersByPrices = new OrderedMultiDictionary<decimal, Order>(true);
+
+            //List<Order> orders = new List<Order>();
             int n = int.Parse(Console.ReadLine());
             string commandLine;
             string command;
@@ -28,16 +32,30 @@ namespace _2._1.OrdersSystem
                         decimal price = decimal.Parse(commandParams[1]);
                         string consumer = commandParams[2];
                         Order newOrder = new Order(name, price, consumer);
-                        orders.Add(newOrder);
+                        //orders.Add(newOrder);
+
+                        ordersByPrices.Add(price, newOrder);
+                        if (!consumers.ContainsKey(consumer))
+                        {
+                            consumers.Add(consumer, new OrderedBag<Order>(new List<Order>() { newOrder }));
+                        }
+                        else
+                        {
+                            consumers[consumer].Add(newOrder);
+                        }
 
                         Console.WriteLine("Order added");
                         break;
                     case "DeleteOrders":
                         string consumerToDelete = commandLine.Substring(command.Length + 1);
-                        int ordersCount = orders.Where(o => o.Consumer == consumerToDelete).Count();
-                        if (ordersCount > 0)
+
+                        //int ordersCount = orders.Where(o => o.Consumer == consumerToDelete).Count();
+                        if (consumers.ContainsKey(consumerToDelete))
                         {
-                            orders.RemoveAll(o => o.Consumer == consumerToDelete);
+                            int ordersCount = consumers[consumerToDelete].Count;
+                            consumers[consumerToDelete].ForEach(o => o = null);
+                            consumers.Remove(consumerToDelete);
+                            //orders.RemoveAll(o => o.Consumer == consumerToDelete);
                             Console.WriteLine(ordersCount + " orders deleted");
                         }
                         else
@@ -46,13 +64,14 @@ namespace _2._1.OrdersSystem
                         }
                         break;
                     case "FindOrdersByPriceRange":
-                        decimal[] priceRanges = commandLine.Substring(command.Length + 1).Split(';').Select(p => decimal.Parse(p)).ToArray();
-                        decimal fromPrice = priceRanges[0];
-                        decimal toPrice = priceRanges[1];
-                        var ordersByPrice = orders.Where(o => o.Price >= fromPrice && o.Price <= toPrice).OrderBy(o => o.Name);
+                        string[] priceRanges = commandLine.Substring(command.Length + 1).Split(';');
+                        decimal fromPrice = decimal.Parse(priceRanges[0]);
+                        decimal toPrice = decimal.Parse(priceRanges[1]);
+                        var ordersByPrice = ordersByPrices.Range(fromPrice, true, toPrice, true);
+                        //var ordersByPrice = orders.Where(o => o.Price >= fromPrice && o.Price <= toPrice).OrderBy(o => o.Name);
                         if (ordersByPrice.Count() > 0)
                         {
-                            Console.WriteLine(string.Join("\n", ordersByPrice));
+                            Console.WriteLine(string.Join("\n", ordersByPrice.Values));
                         }
                         else
                         {
@@ -61,9 +80,12 @@ namespace _2._1.OrdersSystem
                         break;
                     case "FindOrdersByConsumer":
                         string consumerToFind = commandLine.Substring(command.Length + 1);
-                        var ordersByConsumer = orders.Where(o => o.Consumer == consumerToFind).OrderBy(o => o.Name);
-                        if (ordersByConsumer.Count() > 0)
+
+
+                        //var ordersByConsumer = orders.Where(o => o.Consumer == consumerToFind).OrderBy(o => o.Name);
+                        if (consumers.ContainsKey(consumerToFind))
                         {
+                            var ordersByConsumer = consumers[consumerToFind];
                             Console.WriteLine(string.Join("\n", ordersByConsumer));
                         }
                         else
@@ -103,12 +125,7 @@ namespace _2._1.OrdersSystem
 
         public override string ToString()
         {
-            StringBuilder result = new StringBuilder();
-            result.Append("{");
-            result.AppendFormat("{0};{1};{2:0.00}", this.Name, this.Consumer, this.Price);
-            result.Append("}");
-
-            return result.ToString();
+            return "{" + this.Name + ";" + this.Consumer + ";" + string.Format("{0:0.00}", this.Price) + "}";
         }
     }
 }
