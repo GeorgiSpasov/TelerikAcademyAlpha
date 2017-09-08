@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -56,6 +59,8 @@
     <Compile Include="Commands\Listing\ListCoursesInSeasonCommand.cs" />
     <Compile Include="Commands\Listing\ListUsersCommand.cs" />
     <Compile Include="Commands\Listing\ListUsersInSeasonCommand.cs" />
+    <Compile Include="Core\Contracts\IDatabase.cs" />
+    <Compile Include="Core\Database.cs" />
     <Compile Include="Core\Providers\DateTimeProvider.cs" />
     <Compile Include="Core\Factories\AcademyFactory.cs" />
     <Compile Include="Core\Factories\IAcademyFactory.cs" />
@@ -90,11 +95,13 @@
     <Compile Include="Models\Utils\LectureResources\PresentationResource.cs" />
     <Compile Include="Models\Utils\LectureResources\Resource.cs" />
     <Compile Include="Models\Utils\LectureResources\VideoResource.cs" />
+    <Compile Include="Ninject\AcademyModule.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

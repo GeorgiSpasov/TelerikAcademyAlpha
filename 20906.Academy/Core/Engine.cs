@@ -10,38 +10,47 @@ namespace Academy.Core
 {
     public class Engine : IEngine
     {
-        private static IEngine instanceHolder = new Engine();
+        //private static IEngine instanceHolder = new Engine();
+
+        private readonly IReader reader;
+        private readonly IWriter writer;
+        private readonly IParser commandParser; //FindCommand>refactor ----------
 
         private const string TerminationCommand = "Exit";
         private const string NullProvidersExceptionMessage = "cannot be null.";
         private readonly StringBuilder builder = new StringBuilder();
 
         // private because of Singleton design pattern
-        private Engine()
+        private Engine(IReader reader, IWriter writer,
+            IParser commandParser)
         {
-            this.Reader = new ConsoleReader();
-            this.Writer = new ConsoleWriter();
-            this.Parser = new CommandParser();
+            this.reader = reader;
+            this.writer = writer;
+            this.commandParser = commandParser;
+
+            //this.Reader = new ConsoleReader();
+            //this.Writer = new ConsoleWriter();
+            //this.Parser = new CommandParser();
 
             this.Seasons = new List<ISeason>();
             this.Students = new List<IStudent>();
             this.Trainers = new List<ITrainer>();
         }
 
-        public static IEngine Instance
-        {
-            get
-            {
-                return instanceHolder;
-            }
-        }
+        //public static IEngine Instance
+        //{
+        //    get
+        //    {
+        //        return instanceHolder;
+        //    }
+        //}
 
         // Property dependencty injection not validated for simplicity
-        public IReader Reader { get; set; }
+        public IReader Reader { get; }
 
-        public IWriter Writer { get; set; }
+        public IWriter Writer { get; }
 
-        public IParser Parser { get; set; }
+        public IParser Parser { get; }
 
 
         public IList<ISeason> Seasons { get; private set; }
@@ -78,6 +87,7 @@ namespace Academy.Core
             }
         }
 
+        // create command factory ?
         private void ProcessCommand(string commandAsString)
         {
             if (string.IsNullOrWhiteSpace(commandAsString))
