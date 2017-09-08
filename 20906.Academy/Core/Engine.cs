@@ -1,17 +1,12 @@
 ﻿using Academy.Core.Contracts;
-using Academy.Core.Providers;
-using Academy.Models.Contracts;
+using Bytes2you.Validation;
 using System;
-using System.Collections.Generic;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace Academy.Core
 {
     public class Engine : IEngine
     {
-        //private static IEngine instanceHolder = new Engine();
-
         private readonly IReader reader;
         private readonly IWriter writer;
         private readonly IParser commandParser; //FindCommand>refactor ----------
@@ -20,46 +15,41 @@ namespace Academy.Core
         private const string NullProvidersExceptionMessage = "cannot be null.";
         private readonly StringBuilder builder = new StringBuilder();
 
-        // private because of Singleton design pattern
-        private Engine(IReader reader, IWriter writer,
-            IParser commandParser)
+        public Engine(IReader reader, IWriter writer, IParser commandParser)
         {
+            Guard.WhenArgument(reader, "reader").IsNull().Throw();
+            Guard.WhenArgument(writer, "writer").IsNull().Throw();
+            Guard.WhenArgument(commandParser, "commandParser").IsNull().Throw();
+
             this.reader = reader;
             this.writer = writer;
             this.commandParser = commandParser;
-
-            //this.Reader = new ConsoleReader();
-            //this.Writer = new ConsoleWriter();
-            //this.Parser = new CommandParser();
-
-            this.Seasons = new List<ISeason>();
-            this.Students = new List<IStudent>();
-            this.Trainers = new List<ITrainer>();
         }
 
-        //public static IEngine Instance
-        //{
-        //    get
-        //    {
-        //        return instanceHolder;
-        //    }
-        //}
+        public IReader Reader
+        {
+            get
+            {
+                return this.reader;
+            }
+        }
 
-        // Property dependencty injection not validated for simplicity
-        public IReader Reader { get; }
+        public IWriter Writer
+        {
+            get
+            {
+                return this.writer;
+            }
+        }
 
-        public IWriter Writer { get; }
-
-        public IParser Parser { get; }
-
-
-        public IList<ISeason> Seasons { get; private set; }
-
-        public IList<IStudent> Students { get; private set; }
-
-        public IList<ITrainer> Trainers { get; private set; }
-
-
+        public IParser Parser
+        {
+            get
+            {
+                return this.commandParser;
+            }
+        }
+        
         public void Start()
         {
             while (true)
@@ -67,7 +57,6 @@ namespace Academy.Core
                 try
                 {
                     var commandAsString = this.Reader.ReadLine();
-
                     if (commandAsString == TerminationCommand)
                     {
                         this.Writer.Write(this.builder.ToString());

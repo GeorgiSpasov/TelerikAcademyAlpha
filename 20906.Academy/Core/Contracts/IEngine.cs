@@ -7,17 +7,12 @@ namespace Academy.Core.Contracts
     {
         void Start();
 
-        IReader Reader { get; set; }
+        IReader Reader { get; }
+        IWriter Writer { get; }
+        IParser Parser { get; }
 
-        IWriter Writer { get; set; }
-
-        IParser Parser { get; set; }
-
-
-        IList<ISeason> Seasons { get;  }
-
-        IList<IStudent> Students { get; }
-
-        IList<ITrainer> Trainers { get; }
+        //IList<ISeason> Seasons { get; }
+        //IList<IStudent> Students { get; }
+        //IList<ITrainer> Trainers { get; }
     }
 }

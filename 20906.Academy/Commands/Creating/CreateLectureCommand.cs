@@ -8,12 +8,12 @@ namespace Academy.Commands.Creating
     public class CreateLectureCommand : ICommand
     {
         private readonly IAcademyFactory factory;
-        private readonly IEngine engine;
+        private readonly IDatabase database;
 
-        public CreateLectureCommand(IAcademyFactory factory, IEngine engine)
+        public CreateLectureCommand(IAcademyFactory factory, IDatabase database)
         {
             this.factory = factory;
-            this.engine = engine;
+            this.database = database;
         }
 
         public string Execute(IList<string> parameters)
@@ -24,8 +24,8 @@ namespace Academy.Commands.Creating
             var date = parameters[3];
             var trainerUsername = parameters[4];
 
-            var course = this.engine.Seasons[int.Parse(seasonId)].Courses[int.Parse(courseId)];
-            var trainer = this.engine.Trainers.Single(x => x.Username.ToLower() == trainerUsername.ToLower());
+            var course = this.database.Seasons[int.Parse(seasonId)].Courses[int.Parse(courseId)];
+            var trainer = this.database.Trainers.Single(x => x.Username.ToLower() == trainerUsername.ToLower());
 
             var lecture = this.factory.CreateLecture(name, date, trainer);
             course.Lectures.Add(lecture);

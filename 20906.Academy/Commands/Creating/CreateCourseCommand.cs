@@ -7,12 +7,12 @@ namespace Academy.Commands.Creating
     public class CreateCourseCommand : ICommand
     {
         private readonly IAcademyFactory factory;
-        private readonly IEngine engine;
+        private readonly IDatabase database;
 
-        public CreateCourseCommand(IAcademyFactory factory, IEngine engine)
+        public CreateCourseCommand(IAcademyFactory factory, IDatabase database)
         {
             this.factory = factory;
-            this.engine = engine;
+            this.database = database;
         }
 
         public string Execute(IList<string> parameters)
@@ -22,7 +22,7 @@ namespace Academy.Commands.Creating
             var lecturesPerWeek = parameters[2];
             var startingDate = parameters[3];
 
-            var season = this.engine.Seasons[int.Parse(seasonId)];
+            var season = this.database.Seasons[int.Parse(seasonId)];
             var course = this.factory.CreateCourse(name, lecturesPerWeek, startingDate);
             season.Courses.Add(course);
 
