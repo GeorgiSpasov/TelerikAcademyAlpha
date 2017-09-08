@@ -14,7 +14,7 @@ namespace Traveller.Commands.Creating
 
         public override string Execute(IList<string> parameters)
         {
-            var vehicles = this.engine.Vehicles;
+            var vehicles = this.Engine.Vehicles;
 
             if (vehicles.Count == 0)
             {

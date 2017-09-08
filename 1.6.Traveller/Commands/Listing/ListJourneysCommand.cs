@@ -13,7 +13,7 @@ namespace Traveller.Commands.Creating
 
         public override string Execute(IList<string> parameters)
         {
-            var journeys = this.engine.Journeys;
+            var journeys = this.Engine.Journeys;
 
             if (journeys.Count == 0)
             {
