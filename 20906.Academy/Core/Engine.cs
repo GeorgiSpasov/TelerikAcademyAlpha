@@ -9,61 +9,40 @@ namespace Academy.Core
     {
         private readonly IReader reader;
         private readonly IWriter writer;
-        private readonly IParser commandParser; //FindCommand>refactor ----------
+        private readonly ICommandParser commandParser;
+        private readonly ICommandProcessor commandProcessor;
 
         private const string TerminationCommand = "Exit";
         private const string NullProvidersExceptionMessage = "cannot be null.";
         private readonly StringBuilder builder = new StringBuilder();
 
-        public Engine(IReader reader, IWriter writer, IParser commandParser)
+        public Engine(IReader reader, IWriter writer, ICommandParser commandParser, ICommandProcessor commandProcessor)
         {
             Guard.WhenArgument(reader, "reader").IsNull().Throw();
             Guard.WhenArgument(writer, "writer").IsNull().Throw();
             Guard.WhenArgument(commandParser, "commandParser").IsNull().Throw();
+            Guard.WhenArgument(commandProcessor, "commandProcessor").IsNull().Throw();
 
             this.reader = reader;
             this.writer = writer;
             this.commandParser = commandParser;
+            this.commandProcessor = commandProcessor;
         }
 
-        public IReader Reader
-        {
-            get
-            {
-                return this.reader;
-            }
-        }
-
-        public IWriter Writer
-        {
-            get
-            {
-                return this.writer;
-            }
-        }
-
-        public IParser Parser
-        {
-            get
-            {
-                return this.commandParser;
-            }
-        }
-        
         public void Start()
         {
             while (true)
             {
                 try
                 {
-                    var commandAsString = this.Reader.ReadLine();
+                    var commandAsString = this.reader.ReadLine();
                     if (commandAsString == TerminationCommand)
                     {
-                        this.Writer.Write(this.builder.ToString());
+                        this.writer.Write(this.builder.ToString());
                         break;
                     }
 
-                    this.ProcessCommand(commandAsString);
+                    this.commandProcessor.ProcessCommand(commandAsString, builder);
                 }
                 catch (ArgumentOutOfRangeException ex)
                 {
@@ -74,21 +53,6 @@ namespace Academy.Core
                     this.builder.AppendLine(ex.Message);
                 }
             }
-        }
-
-        // create command factory ?
-        private void ProcessCommand(string commandAsString)
-        {
-            if (string.IsNullOrWhiteSpace(commandAsString))
-            {
-                throw new ArgumentNullException("Command cannot be null or empty.");
-            }
-
-            var command = this.Parser.ParseCommand(commandAsString);
-            var parameters = this.Parser.ParseParameters(commandAsString);
-
-            var executionResult = command.Execute(parameters);
-            this.builder.AppendLine(executionResult);
         }
     }
 }

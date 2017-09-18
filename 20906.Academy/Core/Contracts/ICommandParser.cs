@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Academy.Core.Contracts
 {
-    public interface IParser
+    public interface ICommandParser
     {
         ICommand ParseCommand(string fullCommand);
 

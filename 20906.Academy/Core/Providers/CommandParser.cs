@@ -1,26 +1,29 @@
 ﻿using Academy.Commands.Contracts;
 using Academy.Core.Contracts;
 using Academy.Core.Factories;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace Academy.Core.Providers
 {
-    public class CommandParser : IParser
+    public class CommandParser : ICommandParser
     {
-        // Magic, do not touch!
+        private ICommandFactory commandFactory;
+
+        public CommandParser(ICommandFactory commandFactory)
+        {
+            this.commandFactory = commandFactory;
+        }
+
         public ICommand ParseCommand(string fullCommand)
         {
-            var commandName = fullCommand.Split(' ')[0];
-            var commandTypeInfo = this.FindCommand(commandName);
-            var command = Activator.CreateInstance(commandTypeInfo, AcademyFactory.Instance, Database.Instance) as ICommand; // replace Database.Instance -------------
-            // TODO: create commant factory
+            string commandName = fullCommand.Split(' ')[0];
+
+            ICommand command = this.commandFactory.GetCommand(commandName);
+
             return command;
         }
 
-        // Magic, do not touch!
         public IList<string> ParseParameters(string fullCommand)
         {
             var commandParts = fullCommand.Split(' ').ToList();
@@ -32,23 +35,6 @@ namespace Academy.Core.Providers
             }
 
             return commandParts;
-        }
-
-        // Very magic, do not even think about touching!!!
-        private TypeInfo FindCommand(string commandName)
-        {
-            Assembly currentAssembly = this.GetType().GetTypeInfo().Assembly;
-            var commandTypeInfo = currentAssembly.DefinedTypes
-                .Where(type => type.ImplementedInterfaces.Any(inter => inter == typeof(ICommand)))
-                .Where(type => type.Name.ToLower() == (commandName.ToLower() + "command"))
-                .SingleOrDefault();
-
-            if (commandTypeInfo == null)
-            {
-                throw new ArgumentException("The passed command is not found!");
-            }
-
-            return commandTypeInfo;
         }
     }
 }
