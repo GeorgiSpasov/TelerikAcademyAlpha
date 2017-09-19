@@ -30,19 +30,25 @@ namespace Academy.Ninject
             this.Bind<ICommand>().To<AddStudentToSeasonCommand>().Named("AddStudentToSeason");
             this.Bind<ICommand>().To<AddTrainerToSeasonCommand>().Named("AddTrainerToSeason");
 
-            //this.Bind<ICommand>().To<CreateCourseCommand>().Named("CreateCourse");
-            this.Bind<ICommand>().To<CreateCourseResultCommand>().Named("CreateCourseResult");
-            this.Bind<ICommand>().To<CreateLectureCommand>().Named("CreateLecture");
-            this.Bind<ICommand>().To<CreateLectureResourceCommand>().Named("CreateLectureResource");
-            this.Bind<ICommand>().To<CreateSeasonCommand>().Named("CreateSeason");
-            this.Bind<ICommand>().To<CreateStudentCommand>().Named("CreateStudent");
-            this.Bind<ICommand>().To<CreateTrainerCommand>().Named("CreateTrainer");
+            this.Bind<ICommand>().To<CreateCourseCommand>().Named("CreateCourseInternal");
+            this.Bind<ICommand>().To<CreateCourseResultCommand>().Named("CreateCourseResultInternal");
+            this.Bind<ICommand>().To<CreateLectureCommand>().Named("CreateLectureInternal");
+            this.Bind<ICommand>().To<CreateLectureResourceCommand>().Named("CreateLectureResourceInternal");
+            this.Bind<ICommand>().To<CreateSeasonCommand>().Named("CreateSeasonInternal");
+            this.Bind<ICommand>().To<CreateStudentCommand>().Named("CreateStudentInternal");
+            this.Bind<ICommand>().To<CreateTrainerCommand>().Named("CreateTrainerInternal");
 
             this.Bind<ICommand>().To<ListCoursesInSeasonCommand>().Named("ListCoursesInSeason");
             this.Bind<ICommand>().To<ListUsersCommand>().Named("ListUsers");
             this.Bind<ICommand>().To<ListUsersInSeasonCommand>().Named("ListUsersInSeason");
 
-            var commandAdapter = this.Bind<ICommand>().To<CommandDecorator>().WithConstructorArgument(this.Kernel.Get<ICommand>("CreateCourse"));
+            this.Bind<ICommand>().To<CommandDecorator>().Named("CreateCourse").WithConstructorArgument(this.Kernel.Get<ICommand>("CreateCourseInternal"));
+            this.Bind<ICommand>().To<CommandDecorator>().Named("CreateCourseResult").WithConstructorArgument(this.Kernel.Get<ICommand>("CreateCourseResultInternal"));
+            this.Bind<ICommand>().To<CommandDecorator>().Named("CreateLecture").WithConstructorArgument(this.Kernel.Get<ICommand>("CreateLectureInternal"));
+            this.Bind<ICommand>().To<CommandDecorator>().Named("CreateLectureResource").WithConstructorArgument(this.Kernel.Get<ICommand>("CreateLectureResourceInternal"));
+            this.Bind<ICommand>().To<CommandDecorator>().Named("CreateSeason").WithConstructorArgument(this.Kernel.Get<ICommand>("CreateSeasonInternal"));
+            this.Bind<ICommand>().To<CommandDecorator>().Named("CreateStudent").WithConstructorArgument(this.Kernel.Get<ICommand>("CreateStudentInternal"));
+            this.Bind<ICommand>().To<CommandDecorator>().Named("CreateTrainer").WithConstructorArgument(this.Kernel.Get<ICommand>("CreateTrainerInternal"));
         }
     }
 }

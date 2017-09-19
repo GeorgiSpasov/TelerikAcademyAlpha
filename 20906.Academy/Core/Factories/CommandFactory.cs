@@ -5,7 +5,7 @@ namespace Academy.Core.Factories
 {
     public class CommandFactory : ICommandFactory
     {
-        private IKernel kernel;
+        private readonly IKernel kernel;
 
         public CommandFactory(IKernel kernel)
         {

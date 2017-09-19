@@ -1,18 +1,16 @@
 ﻿using Academy.Commands.Contracts;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Academy.Commands
 {
     public class CommandDecorator : ICommand
     {
-        private ICommand command;
+        private readonly ICommand command;
 
         public CommandDecorator(ICommand command)
         {
+            this.command = command ?? throw new ArgumentNullException("Command can't be null!");
             this.command = command;
         }
 
@@ -20,7 +18,7 @@ namespace Academy.Commands
         {
             string commandResult = this.command.Execute(parameters);
             string decoration = $"Command is called at {DateTime.Now}!";
-            string result = string.Format($"{commandResult}\n{decoration}");
+            string result = string.Format($"{commandResult} [{decoration}]");
 
             return result;
         }
