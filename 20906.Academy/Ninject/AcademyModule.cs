@@ -1,4 +1,5 @@
-﻿using Academy.Commands.Adding;
+﻿using Academy.Commands;
+using Academy.Commands.Adding;
 using Academy.Commands.Contracts;
 using Academy.Commands.Creating;
 using Academy.Commands.Listing;
@@ -7,6 +8,7 @@ using Academy.Core.Contracts;
 using Academy.Core.Factories;
 using Academy.Core.Providers;
 using Ninject.Modules;
+using Ninject;
 
 namespace Academy.Ninject
 {
@@ -28,7 +30,7 @@ namespace Academy.Ninject
             this.Bind<ICommand>().To<AddStudentToSeasonCommand>().Named("AddStudentToSeason");
             this.Bind<ICommand>().To<AddTrainerToSeasonCommand>().Named("AddTrainerToSeason");
 
-            this.Bind<ICommand>().To<CreateCourseCommand>().Named("CreateCourse");
+            //this.Bind<ICommand>().To<CreateCourseCommand>().Named("CreateCourse");
             this.Bind<ICommand>().To<CreateCourseResultCommand>().Named("CreateCourseResult");
             this.Bind<ICommand>().To<CreateLectureCommand>().Named("CreateLecture");
             this.Bind<ICommand>().To<CreateLectureResourceCommand>().Named("CreateLectureResource");
@@ -39,6 +41,8 @@ namespace Academy.Ninject
             this.Bind<ICommand>().To<ListCoursesInSeasonCommand>().Named("ListCoursesInSeason");
             this.Bind<ICommand>().To<ListUsersCommand>().Named("ListUsers");
             this.Bind<ICommand>().To<ListUsersInSeasonCommand>().Named("ListUsersInSeason");
+
+            var commandAdapter = this.Bind<ICommand>().To<CommandDecorator>().WithConstructorArgument(this.Kernel.Get<ICommand>("CreateCourse"));
         }
     }
 }
