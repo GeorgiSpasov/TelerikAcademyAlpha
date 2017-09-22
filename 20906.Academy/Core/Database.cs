@@ -6,9 +6,6 @@ namespace Academy.Core
 {
     public class Database : IDatabase
     {
-        // Temp => singleton in AcademyModule
-        public static IDatabase Instance = new Database();
-
         private readonly IList<ISeason> seasons;
         private readonly IList<IStudent> students;
         private readonly IList<ITrainer> trainers;
@@ -24,10 +21,12 @@ namespace Academy.Core
         {
             get { return this.seasons; }
         }
+
         public IList<IStudent> Students
         {
             get { return this.students; }
         }
+
         public IList<ITrainer> Trainers
         {
             get { return this.trainers; }

@@ -10,8 +10,7 @@ namespace Academy.Commands
 
         public CommandDecorator(ICommand command)
         {
-            this.command = command ?? throw new ArgumentNullException("Command can't be null!");
-            this.command = command;
+            this.command = command ?? throw new ArgumentNullException("Command cannot be null!");
         }
 
         public string Execute(IList<string> parameters)
