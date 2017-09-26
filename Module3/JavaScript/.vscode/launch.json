@@ -3,7 +3,7 @@
     "configurations": [
         {
             "type": "node",
-            "protocol": "inspector",
+            //"protocol": "inspector",
             "request": "launch",
             "name": "Launch Program",
             "program": "${file}"
