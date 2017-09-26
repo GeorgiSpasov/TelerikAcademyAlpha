@@ -3,7 +3,7 @@
     "configurations": [
         {
             "type": "node",
-            //"protocol": "inspector",
+            //"protocol": "inspector", // For debugging with node.js < 8
             "request": "launch",
             "name": "Launch Program",
             "program": "${file}"
